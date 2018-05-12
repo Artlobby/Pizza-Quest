@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Pizza Quest</title>
+</head>
+<body>
+
+	<script src='js/main.js'></script>
+	<script src='js/player.js'></script>
+	<script src='js/loader.js'></script>
+	<script src='js/input.js'></script>
+	<script src='js/ui.js'></script>
+	<script src='js/utility.js'></script>
+	<script src='js/objects.js'></script>
+	<script src='js/game.js'></script>
+	<script src='js/dialogue.js'></script>
+	<script src='js/initObjects.js'></script>
+	<script src='js/draw.js'></script>
+	<script src='js/scene.js'></script>
+	<script src='js/startMenu.js'></script>
+	<script src='js/audio.js'></script>
+
+	<canvas>
+		Get a real browser!
+	</canvas>
+
+
+	<div id="textContent">
+		<p id="contentTitle">Welcome to Pizza Quest!</p>
+
+		<p id="sectionHeader">How to Play:</p>
+		<p>
+			This is a point and click adventure game, in the style of 90s LucasArts adventure games. <br>
+			Move your character by clicking around the screen. <br>
+			Hovering the mouse over objects and characters displays their name in the UI. <br>
+			Click on an Action Button and then an object or character to perform the desired action. <br>
+			You can use objects with other objects, and give objects to people. <br>
+			<br>
+			Examine everything and talk to everyone.
+		</p>
+
+		<p id="contentTitle">Walkthrough:</p>
+
+		<p id="sectionHeader">Intro:</p>
+		<p>
+			Your goal in this game is to get into the Pizza Place and get a pizza.<br>
+			<br>
+			Blocking your way is Agnes, who wants to prevent you from getting pizza.<br>
+			In order to get her to move, you'll have to call her from a pay phone (your cell is dead).<br>
+			This task is split into two parts: Getting her phone number and finding a quarter for the payphone.<br>
+			<br>
+			You start at a bus stop, with a theater to your right and a parking lot with the Pizza Place and a Fitness Place to your left.
+		</p>
+		<p id="sectionHeader">Getting Agnes' Phone Number:</p>
+		<p>
+			Go left, to the parking lot, and walk to the Pizza Place. <br>
+			Talk to the woman and learn what you can from her. <br>
+			<br>
+			Now that you've met her, walk right to the Fitness Place and talk to Josh, the guy out front, about the woman. <br>
+			You can now ask for her phone number. Josh will ask you a series of questions about Agnes, most of which you can answer based on your conversation with her. <br>
+			You do not, however, know what year she won the Regional Soccer Tournament. You'll have to find that information elsewhere. <br>
+			Ask Josh if he has any "free samples" and he'll give you a toy robot claw for some reason. <br>
+			<br>
+			Head back past the bus stop to the theater and look in the trash. There's something interesting in there but your character refuses to reach in and grab it. <br>
+			Instead, use the claw on the trash to get the thing out. It's a trophy! <br>
+			Unfortunately, the trophy is old and dirty and unreadable. It needs to be washed. <br>
+			If you go back to the bus stop, you'll find a storm drain with water in it. <br>
+			<br>
+			Using the trophy with the storm drain will clean it off, and if you read it you'll be able to find out what year Agnes won the Tournament. <br>
+			Armed with this information, return to Josh and convince him to give you the phone number.
+		</p>
+		<p id="sectionHeader">Finding a Quarter:</p>
+		<p>
+			Inside the theater, you'll find a man conspicuously flipping a coin. <br>
+			If you ask him about it, you'll learn it's his lucky quarter and that he'll never part with it. <br>
+			Tough luck. Push him, causing him to drop his coin and panic. <br>
+			Though you can see where his coin landed on the floor (it's small but twinkly), you can't pick it up without him seeing. <br>
+			You'll have to give him something to make him stop looking for it. <br>
+			<br>
+			Look at the vending machine. The player will notice that someone left a soda bottle in it. <br>
+			Pick up the soda bottle and open it. You'll spill it, but you'll end up with a cap that looks vaguely like a quarter. <br>
+			Give the cap to the man. He is satisfied. <br>
+			Pick up the quarter and be on your merry way.
+		</p>
+		<p id="sectionHeader">Ending the game:</p>
+		<p>
+			Once you have the phone number and the quarter, use the quarter on the pay phone in the theater to make a call. <br>
+			After the call, make your way back to the pizza place, where Agnes is nowhere to be found. <br>
+			Enter the pizza place and talk to the girl at the counter to order your pizza. <br>
+			Once you have the pizza, walk over to the tables and enjoy sweet, sweet victory.
+		</p>
+	</div>
+
+
+
+
+	<div id="sprites" style = "display: none">
+		<img src="media/images/AlexSpriteSheet.png">
+		<img src="media/images/MackenzieSpriteSheet.png">
+		<img src="media/images/reticle.png">
+		<img src="media/images/charPortraits.png">
+		<img src="media/images/invSprites.png">
+		<img src="media/images/tallSprites.png">
+		<img src="media/images/logo.png">
+		<img src="media/images/pizzaGoers.png">
+	</div>
+
+	<div id="backgrounds" style = "display: none">
+		<img src="media/images/busStop.png">
+		<img src="media/images/theater.png">
+		<img src="media/images/theaterInt.png">
+		<img src="media/images/parkingLot.png">
+		<img src="media/images/pizzaExt.png">
+		<img src="media/images/pizzaInt.png">
+		<img src="media/images/fitness.png">
+	</div>
+
+	<div id="audioControls" style = "display: none">
+		<audio id="introMusic" src="media/audio/bltIntro.mp3" controls loop></audio>
+	</div>
+
+</body>
+</html>

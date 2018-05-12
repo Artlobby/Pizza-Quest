@@ -1,0 +1,31 @@
+canvas{
+	border: 1px solid gray;
+	cursor: none;
+}
+@font-face {
+    font-family: 'monkeyIsland1';
+    src: url('media/fonts/ONESIZE_.TTF');
+}
+@font-face {
+    font-family: 'monkeyIsland2';
+    src: url('media/fonts/ONESR___.TTF');
+}
+
+p{
+	font-family: "courier";
+}
+
+#textContent {
+	max-width: 640px;
+	padding: 0px 20px 0px 20px;
+}
+
+#contentTitle {
+	font-size: 32px;
+	font-family: "monkeyIsland2";
+}
+
+#sectionHeader {
+	font-size: 24px;
+	font-family: "monkeyIsland1";
+}
