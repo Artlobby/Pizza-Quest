@@ -31,7 +31,7 @@ app.draw = function(){
 		this.scene.scenes[this.scene.sceneNames.FITNESS].image = draw.backgrounds[6];
 
 		// Sets cursor
-		this.ui.cursorImage = draw.spriteSheets[2];
+		SetCursorImage(draw.spriteSheets[2]);
 
 		// Player Spritesheet (Alex)
 		var playerSpritesheet = new draw.Spritesheet(draw.spriteSheets[0], 8, 4);
@@ -93,7 +93,7 @@ app.draw = function(){
 			// DRAWS THE PAUSE MENU
 			this.ctx.fillStyle = "black";
 			this.ctx.fillRect(0, 0, 640, 480);
-			fillText(this.ctx, "PAUSED", 320, 200, "16pt monkeyisland1", "white", "center");
+			utility.FillText(this.ctx, "PAUSED", 320, 200, "16pt monkeyisland1", "white", "center");
 		} else if(this.game.gameState == this.game.GAME_STATE.GAMEPLAY ||
 			this.game.gameState == this.game.GAME_STATE.DIALOGUE){
 			// DRAW BACKGROUND
@@ -115,17 +115,17 @@ app.draw = function(){
 			this.dialogue.drawDialogue(this.ctx, this.player, this.WIDTH, this.HEIGHT);
 	
 			// DRAWS THE UI
-			this.ui.draw(this.ctx, this.WIDTH, this.HEIGHT, this.game, this.input, this.player, this.dialogue, draw, this.scene);
+			this.ui.Draw(this.ctx, this.WIDTH, this.HEIGHT, this.game, this.input, this.player, this.dialogue, draw, this.scene);
 		} else if(this.game.gameState == this.game.GAME_STATE.MENU){
 			// DRAWS THE MENU
 			this.startMenu.draw(this.ctx, this.input);
-			this.ui.drawCursor(this.ctx, this.input, this.draw);
+			this.ui.DrawCursor(this.ctx, this.input, this.draw);
 		} else if(this.game.gameState == this.game.GAME_STATE.END){
 			// DRAWS THE ENDGAME
 			this.ctx.fillStyle = "black";
 			this.ctx.fillRect(0, 0, 640, 480);
-			fillText(this.ctx, "THE END", 320, 200, "16pt monkeyisland1", "white", "center");
-			this.ui.drawCursor(this.ctx, this.input, this.draw);
+			utility.FillText(this.ctx, "THE END", 320, 200, "16pt monkeyisland1", "white", "center");
+			this.ui.DrawCursor(this.ctx, this.input, this.draw);
 		}
 		
 	};
@@ -138,7 +138,7 @@ app.draw = function(){
 		// Takes an animation object and adds it to the animation array
 		// of the given object
 
-		var obj = GetObject(objects, objectName);
+		var obj = utility.GetObject(objects, objectName);
 		if(obj != undefined){
 			obj.anims.push(anim);
 			if(obj.anims.length == 1){
@@ -172,7 +172,7 @@ app.draw = function(){
 		this.framerate = 1 / 10;
 		this.timer = this.framerate;
 		this.incrTimer = function(){
-			this.timer -= deltaTime();
+			this.timer -= util.DeltaTime();
 			if(this.timer <= 0) {
 				this.timer = this.framerate;
 				this.currentFrame++;

@@ -26,31 +26,31 @@ app.dialogue = function(){
 			height : this.player.animations[0].height * 2,
 			color: "white"
 		};
-		var m = GetObject(this.objects.list, "Mackenzie");
+		var m = utility.GetObject(this.objects.list, "Mackenzie");
 		var mackenzie = {
 			position : m.position,
 			height : m.height,
 			color: "lightblue"
 		};
-		var lady = GetObject(this.objects.list, "Woman");
+		var lady = utility.GetObject(this.objects.list, "Woman");
 		var pizzaVillain = {
 			position : lady.position,
 			height : lady.height,
 			color : "magenta"
 		};
-		var fGuy = GetObject(this.objects.list, "Guy");
+		var fGuy = utility.GetObject(this.objects.list, "Guy");
 		var fitnessGuy = {
 			position : fGuy.position,
 			height : fGuy.height,
 			color : "limegreen"
 		};
-		var cGuy = GetObject(this.objects.list, "Man");
+		var cGuy = utility.GetObject(this.objects.list, "Man");
 		var coinGuy = {
 			position : cGuy.position,
 			height : cGuy.height,
 			color : "lightgray"
 		};
-		var pp = GetObject(this.objects.list, "Pizza Person");
+		var pp = utility.GetObject(this.objects.list, "Pizza Person");
 		var pizzaPerson = {
 			position : pp.position,
 			height : pp.height,
@@ -100,19 +100,19 @@ app.dialogue = function(){
 		// Stores that info to be checked when the mouse is clicked
 
 		var divs = 6;
-		var h = (HEIGHT - ui.bottomBound) / divs;
+		var h = (HEIGHT - ui.BOTTOM_BOUND) / divs;
 		var y;
 		var rect;
 
 		for(var n = 0; n < dialogue.discourseOptions.length; ++n){
-			y = h * n + ui.bottomBound;
+			y = h * n + ui.BOTTOM_BOUND;
 			rect = {
 				x : 0,
 				y : y,
 				width : WIDTH,
 				height : h
 			};
-			dialogue.discourseOptions[n].mousedOver = rectangleContainsPoint(rect, input.mouse);
+			dialogue.discourseOptions[n].mousedOver = utility.RectangleContainsPoint(rect, input.mouse);
 		}
 	};
 
@@ -177,12 +177,12 @@ app.dialogue = function(){
 
 		var heightLimit = 50;
 		if(y < heightLimit) y = heightLimit;
-		var tWidth = checkTextLength(ctx, dialogue.lines[0].line, "16pt monkeyisland2");
+		var tWidth = utility.CheckTextLength(ctx, dialogue.lines[0].line, "16pt monkeyisland2");
 		if(x + tWidth/2 > WIDTH) x = WIDTH - tWidth/2;
 		if(x - tWidth/2 < 0) x = tWidth/2;
 
-		fillText(ctx, dialogue.lines[0].line, x, y, "16pt monkeyisland1", speaker.color);
-		fillText(ctx, dialogue.lines[0].line, x, y, "16pt monkeyisland2", "black");
+		utility.FillText(ctx, dialogue.lines[0].line, x, y, "16pt monkeyisland1", speaker.color);
+		utility.FillText(ctx, dialogue.lines[0].line, x, y, "16pt monkeyisland2", "black");
 	};
 
 

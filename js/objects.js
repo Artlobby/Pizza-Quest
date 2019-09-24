@@ -55,10 +55,10 @@ app.objects = function(){
 		// If so, changes that object's mousedOver property
 
 		// Returns if the mouse isn't in the play area
-		if(input.mouse.y > ui.bottomBound) return;
+		if(input.mouse.y > ui.BOTTOM_BOUND) return;
 	
 		// Gets the written form of the current action
-		var action = getActionText(ui, player);
+		var action = utility.GetActionText(ui, player);
 	
 		// Goes through each object
 		for(var n = 0; n < objects.list.length; ++n){
@@ -77,15 +77,15 @@ app.objects = function(){
 				rect.y = objects.list[n].position.y - rect.height;
 
 				// Sets whether it is moused over
-				objects.list[n].mousedOver = rectangleContainsPoint(rect, input.mouse);
+				objects.list[n].mousedOver = utility.RectangleContainsPoint(rect, input.mouse);
 		
 				// Updates the focus text depending on whether the player has
 				// moused over an object
 				if(objects.list[n].mousedOver == true){
-					ui.focusText = action + objects.list[n].name;
+					SetFocusText(action + objects.list[n].name);
 					return;
 				} else {
-					ui.focusText = action;
+					SetFocusText(action);
 				}
 			} else {
 				objects.list[n].mousedOver = false;
@@ -151,9 +151,9 @@ app.objects = function(){
 		// specified target and stops	
 		var func = function(){
 			actionFunc(dialogue, player);
-			player.currentActionFunction = function(){};
+			player.setCurrentActionFunction(function(){});
 		};
-		player.currentActionFunction = func.bind(this);
+		player.setCurrentActionFunction(func.bind(this));
 	};
 	
 	

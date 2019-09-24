@@ -48,19 +48,19 @@ app.initObjects = function(){
 
 	var mackenzie = new this.objects.Object("Mackenzie", 350, 220, 0);
 	
-	mackenzie.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's " + mackenzie.name + ".");
-	mackenzie.actionFuncs[ACTIONS.USE] = QuickSay("That seems rather rude.");
-	mackenzie.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I don't need to.");
-	mackenzie.actionFuncs[ACTIONS.PUSH] = QuickSay("They could probably beat me up.");
-	mackenzie.actionFuncs[ACTIONS.PULL] = QuickSay("They could probably beat me up.");
-	mackenzie.actionFuncs[ACTIONS.GIVE] = QuickSay("They are not mine to give.");
+	mackenzie.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's " + mackenzie.name + ".");
+	mackenzie.actionFuncs[ACTIONS.USE] = utility.QuickSay("That seems rather rude.");
+	mackenzie.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I don't need to.");
+	mackenzie.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("They could probably beat me up.");
+	mackenzie.actionFuncs[ACTIONS.PULL] = utility.QuickSay("They could probably beat me up.");
+	mackenzie.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("They are not mine to give.");
 	mackenzie.actionFuncs[ACTIONS.TALK_TO] = function(dialogue){
 		dialogue.say("Hey.");
 		dialogue.say("Hey.", 1);
 		dialogue.discourseOptions = mackenzieDialogue.choices;
 	};
-	mackenzie.actionFuncs[ACTIONS.OPEN] = QuickSay("That seems rather rude.");
-	mackenzie.actionFuncs[ACTIONS.CLOSE] = QuickSay("That seems rather rude.");
+	mackenzie.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("That seems rather rude.");
+	mackenzie.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("That seems rather rude.");
 	mackenzie.useWith = false;
 
 	// Custom animation and motion
@@ -120,7 +120,7 @@ app.initObjects = function(){
 		line : "*snap* SLEEP!",
 		response : "Nope, sorry, hypnosis is still not working.",
 		speaker : 1,
-		moreTalk : QuickSay("Damn."),
+		moreTalk : utility.QuickSay("Damn."),
 		choices : mackenzieDialogue.choices,
 		mousedOver : false
 	});
@@ -180,7 +180,7 @@ app.initObjects = function(){
 	theaterPath.width = 60;
 	theaterPath.height = 480;
 	theaterPath.draw = function(){};
-	theaterPath.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the local movie theater.");
+	theaterPath.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the local movie theater.");
 	theaterPath.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.THEATER_EXT;
@@ -193,7 +193,7 @@ app.initObjects = function(){
 		mackenzie.position.x = -100;
 		mackenzie.position.y = 200;
 	};
-	theaterPath.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	theaterPath.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -204,7 +204,7 @@ app.initObjects = function(){
 	parkingLotPath.width = 60;
 	parkingLotPath.height = 480;
 	parkingLotPath.draw = function(){};
-	parkingLotPath.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's a parking lot.");
+	parkingLotPath.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's a parking lot.");
 	parkingLotPath.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.PARKING_LOT;
@@ -217,7 +217,7 @@ app.initObjects = function(){
 		mackenzie.position.x = 750;
 		mackenzie.position.y = 200;
 	};
-	parkingLotPath.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	parkingLotPath.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -229,14 +229,14 @@ app.initObjects = function(){
 		dialogue.say("It's the bus stop sign.");
 		dialogue.say("It's pretty faded.");
 	};
-	busStopSign.actionFuncs[ACTIONS.USE] = QuickSay("It's just a sign.");
-	busStopSign.actionFuncs[ACTIONS.PICK_UP] = QuickSay("No thanks.");
-	busStopSign.actionFuncs[ACTIONS.PUSH] = QuickSay("It's not moving.");
-	busStopSign.actionFuncs[ACTIONS.PULL] = QuickSay("It's not moving.");
-	busStopSign.actionFuncs[ACTIONS.GIVE] = QuickSay("It's just a sign.");
-	busStopSign.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, sign.");
-	busStopSign.actionFuncs[ACTIONS.OPEN] = QuickSay("It's just a sign.");
-	busStopSign.actionFuncs[ACTIONS.CLOSE] = QuickSay("It's just a sign.");
+	busStopSign.actionFuncs[ACTIONS.USE] = utility.QuickSay("It's just a sign.");
+	busStopSign.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("No thanks.");
+	busStopSign.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("It's not moving.");
+	busStopSign.actionFuncs[ACTIONS.PULL] = utility.QuickSay("It's not moving.");
+	busStopSign.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("It's just a sign.");
+	busStopSign.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, sign.");
+	busStopSign.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("It's just a sign.");
+	busStopSign.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("It's just a sign.");
 
 
 
@@ -295,11 +295,11 @@ app.initObjects = function(){
 			}
 		}
 	};
-	stormDrain.actionFuncs[ACTIONS.PICK_UP] = QuickSay("It's a hole in the ground.");
-	stormDrain.actionFuncs[ACTIONS.PUSH] = QuickSay("It's a hole in the ground.");
-	stormDrain.actionFuncs[ACTIONS.PULL] = QuickSay("It's a hole in the ground.");
-	stormDrain.actionFuncs[ACTIONS.GIVE] = QuickSay("It's a hole in the ground.");
-	stormDrain.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, storm drain.");
+	stormDrain.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("It's a hole in the ground.");
+	stormDrain.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("It's a hole in the ground.");
+	stormDrain.actionFuncs[ACTIONS.PULL] = utility.QuickSay("It's a hole in the ground.");
+	stormDrain.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("It's a hole in the ground.");
+	stormDrain.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, storm drain.");
 	stormDrain.draw = function(){};
 
 
@@ -359,7 +359,7 @@ app.initObjects = function(){
 	theaterToBusStop.width = 60;
 	theaterToBusStop.height = 340;
 	theaterToBusStop.draw = function(){};
-	theaterToBusStop.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the bus stop");
+	theaterToBusStop.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the bus stop");
 	theaterToBusStop.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.BUS_STOP;
@@ -372,7 +372,7 @@ app.initObjects = function(){
 		mackenzie.position.x = 750;
 		mackenzie.position.y = 200;
 	};
-	theaterToBusStop.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	theaterToBusStop.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 	/*
@@ -382,7 +382,7 @@ app.initObjects = function(){
 	theaterDoor.width = 50;
 	theaterDoor.height = 130;
 	theaterDoor.draw = function(){};
-	theaterDoor.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the entrance to the theater.");
+	theaterDoor.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the entrance to the theater.");
 	theaterDoor.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.THEATER_INT;
@@ -395,7 +395,7 @@ app.initObjects = function(){
 		mackenzie.position.x = 320;
 		mackenzie.position.y = 500;
 	};
-	theaterDoor.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	theaterDoor.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -405,29 +405,29 @@ app.initObjects = function(){
 	var poster1 = new this.objects.Object("Poster", 34, 122, scene.sceneNames.THEATER_EXT);
 	poster1.width = posterSize.x;
 	poster1.height = posterSize.y;
-	poster1.actionFuncs[ACTIONS.LOOK_AT] = QuickSay('"Kill Phil"');
-	poster1.actionFuncs[ACTIONS.USE] = QuickSay("I can't.");
-	poster1.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I'll just have to pay for it if I do.");
-	poster1.actionFuncs[ACTIONS.PUSH] = QuickSay("It's not moving.");
-	poster1.actionFuncs[ACTIONS.PULL] = QuickSay("I'll just have to pay for it if I do.");
-	poster1.actionFuncs[ACTIONS.GIVE] = QuickSay("I can't.");
-	poster1.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello poster.");
-	poster1.actionFuncs[ACTIONS.OPEN] = QuickSay("I can't.");
-	poster1.actionFuncs[ACTIONS.CLOSE] = QuickSay("I can't.");
+	poster1.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay('"Kill Phil"');
+	poster1.actionFuncs[ACTIONS.USE] = utility.QuickSay("I can't.");
+	poster1.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I'll just have to pay for it if I do.");
+	poster1.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("It's not moving.");
+	poster1.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'll just have to pay for it if I do.");
+	poster1.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I can't.");
+	poster1.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello poster.");
+	poster1.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("I can't.");
+	poster1.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("I can't.");
 	poster1.draw = function(){};
 
 	var poster2 = new this.objects.Object("Poster", 114, 122, scene.sceneNames.THEATER_EXT);
 	poster2.width = posterSize.x;
 	poster2.height = posterSize.y;
-	poster2.actionFuncs[ACTIONS.LOOK_AT] = QuickSay('"Transrobots"');
-	poster2.actionFuncs[ACTIONS.USE] = QuickSay("I can't.");
-	poster2.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I'll just have to pay for it if I do.");
-	poster2.actionFuncs[ACTIONS.PUSH] = QuickSay("It's not moving.");
-	poster2.actionFuncs[ACTIONS.PULL] = QuickSay("I'll just have to pay for it if I do.");
-	poster2.actionFuncs[ACTIONS.GIVE] = QuickSay("I can't.");
-	poster2.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello poster.");
-	poster2.actionFuncs[ACTIONS.OPEN] = QuickSay("I can't.");
-	poster2.actionFuncs[ACTIONS.CLOSE] = QuickSay("I can't.");
+	poster2.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay('"Transrobots"');
+	poster2.actionFuncs[ACTIONS.USE] = utility.QuickSay("I can't.");
+	poster2.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I'll just have to pay for it if I do.");
+	poster2.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("It's not moving.");
+	poster2.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'll just have to pay for it if I do.");
+	poster2.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I can't.");
+	poster2.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello poster.");
+	poster2.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("I can't.");
+	poster2.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("I can't.");
 	poster2.draw = function(){};
 
 	var poster3 = new this.objects.Object("Poster", 190, 122, scene.sceneNames.THEATER_EXT);
@@ -466,28 +466,28 @@ app.initObjects = function(){
 				break;
 		}
 	};
-	poster3.actionFuncs[ACTIONS.USE] = QuickSay("I can't.");
-	poster3.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I'll just have to pay for it if I do.");
-	poster3.actionFuncs[ACTIONS.PUSH] = QuickSay("It's not moving.");
-	poster3.actionFuncs[ACTIONS.PULL] = QuickSay("I'll just have to pay for it if I do.");
-	poster3.actionFuncs[ACTIONS.GIVE] = QuickSay("I can't.");
-	poster3.actionFuncs[ACTIONS.TALK_TO] = QuickSay("No.");
-	poster3.actionFuncs[ACTIONS.OPEN] = QuickSay("I can't.");
-	poster3.actionFuncs[ACTIONS.CLOSE] = QuickSay("I can't.");
+	poster3.actionFuncs[ACTIONS.USE] = utility.QuickSay("I can't.");
+	poster3.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I'll just have to pay for it if I do.");
+	poster3.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("It's not moving.");
+	poster3.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'll just have to pay for it if I do.");
+	poster3.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I can't.");
+	poster3.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("No.");
+	poster3.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("I can't.");
+	poster3.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("I can't.");
 	poster3.draw = function(){};
 
 	var poster4 = new this.objects.Object("Poster", 274, 122, scene.sceneNames.THEATER_EXT);
 	poster4.width = posterSize.x;
 	poster4.height = posterSize.y;
-	poster4.actionFuncs[ACTIONS.LOOK_AT] = QuickSay('"YA Novel: The Movie"');
-	poster4.actionFuncs[ACTIONS.USE] = QuickSay("I can't.");
-	poster4.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I'll just have to pay for it if I do.");
-	poster4.actionFuncs[ACTIONS.PUSH] = QuickSay("It's not moving.");
-	poster4.actionFuncs[ACTIONS.PULL] = QuickSay("I'll just have to pay for it if I do.");
-	poster4.actionFuncs[ACTIONS.GIVE] = QuickSay("I can't.");
-	poster4.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello poster.");
-	poster4.actionFuncs[ACTIONS.OPEN] = QuickSay("I can't.");
-	poster4.actionFuncs[ACTIONS.CLOSE] = QuickSay("I can't.");
+	poster4.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay('"YA Novel: The Movie"');
+	poster4.actionFuncs[ACTIONS.USE] = utility.QuickSay("I can't.");
+	poster4.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I'll just have to pay for it if I do.");
+	poster4.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("It's not moving.");
+	poster4.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'll just have to pay for it if I do.");
+	poster4.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I can't.");
+	poster4.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello poster.");
+	poster4.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("I can't.");
+	poster4.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("I can't.");
 	poster4.draw = function(){};
 
 
@@ -515,20 +515,20 @@ app.initObjects = function(){
 					dialogue.say("It's an old trophy!");
 					player.addToInventory(trophy);
 					trophy.inInventory = true;
-					trash.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("Nothing but trash in there now.");
+					trash.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("Nothing but trash in there now.");
 					break;
 				default:
 					dialogue.say("I don't need to throw that away.");
 			}
 		}
 	};
-	trash.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I don't want the trash can.");
-	trash.actionFuncs[ACTIONS.PUSH] = QuickSay("I'd rather not.");
-	trash.actionFuncs[ACTIONS.PULL] = QuickSay("I'd rather not.");
-	trash.actionFuncs[ACTIONS.GIVE] = QuickSay("Who would want it?");
-	trash.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, trash.");
-	trash.actionFuncs[ACTIONS.OPEN] = QuickSay("I'm perfectly comfortable with keeping it closed.");
-	trash.actionFuncs[ACTIONS.CLOSE] = QuickSay("It's already closed");
+	trash.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I don't want the trash can.");
+	trash.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("I'd rather not.");
+	trash.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'd rather not.");
+	trash.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("Who would want it?");
+	trash.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, trash.");
+	trash.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("I'm perfectly comfortable with keeping it closed.");
+	trash.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("It's already closed");
 
 
 
@@ -549,16 +549,16 @@ app.initObjects = function(){
 			dialogue.say("I can't use those two things together");
 		}
 	};
-	trophy.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I already have it.");
-	trophy.actionFuncs[ACTIONS.PUSH] = QuickSay("It's just a trophy.");
-	trophy.actionFuncs[ACTIONS.PULL] = QuickSay("It's just a trophy.");
-	trophy.actionFuncs[ACTIONS.GIVE] = QuickSay("Who would want it?");
+	trophy.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I already have it.");
+	trophy.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("It's just a trophy.");
+	trophy.actionFuncs[ACTIONS.PULL] = utility.QuickSay("It's just a trophy.");
+	trophy.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("Who would want it?");
 	trophy.actionFuncs[ACTIONS.TALK_TO] = function(dialogue){
 		dialogue.say("Hello, trophy.");
 		dialogue.say("What secrets do you hold?");
 	};
-	trophy.actionFuncs[ACTIONS.OPEN] = QuickSay("It's just a trophy.");
-	trophy.actionFuncs[ACTIONS.CLOSE] = QuickSay("It's just a trophy.");
+	trophy.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("It's just a trophy.");
+	trophy.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("It's just a trophy.");
 
 
 
@@ -622,7 +622,7 @@ app.initObjects = function(){
 	theaterExit.width = 320;
 	theaterExit.height = 40;
 	theaterExit.draw = function(){};
-	theaterExit.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the theater exit.");
+	theaterExit.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the theater exit.");
 	theaterExit.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.THEATER_EXT;
@@ -635,21 +635,21 @@ app.initObjects = function(){
 		mackenzie.position.x = 496;
 		mackenzie.position.y = 250;
 	};
-	theaterExit.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	theaterExit.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 	var theaterInnerDoor = new this.objects.Object("Inner Theater Door", 156, 110, scene.sceneNames.THEATER_INT);
 	theaterInnerDoor.width = 120;
 	theaterInnerDoor.height = 120;
-	theaterInnerDoor.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It goes into the theater part of the theater.");
-	theaterInnerDoor.actionFuncs[ACTIONS.USE] = QuickSay("I don't want to see a movie.");
-	theaterInnerDoor.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how doors work.");
-	theaterInnerDoor.actionFuncs[ACTIONS.PUSH] = QuickSay("I don't want to see a movie.");
-	theaterInnerDoor.actionFuncs[ACTIONS.PULL] = QuickSay("I don't want to see a movie.");
-	theaterInnerDoor.actionFuncs[ACTIONS.GIVE] = QuickSay("That's not how doors work.");
-	theaterInnerDoor.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello door.");
-	theaterInnerDoor.actionFuncs[ACTIONS.OPEN] = QuickSay("I don't want to see a movie.");
-	theaterInnerDoor.actionFuncs[ACTIONS.CLOSE] = QuickSay("It's already closed");
+	theaterInnerDoor.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It goes into the theater part of the theater.");
+	theaterInnerDoor.actionFuncs[ACTIONS.USE] = utility.QuickSay("I don't want to see a movie.");
+	theaterInnerDoor.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how doors work.");
+	theaterInnerDoor.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("I don't want to see a movie.");
+	theaterInnerDoor.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I don't want to see a movie.");
+	theaterInnerDoor.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("That's not how doors work.");
+	theaterInnerDoor.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello door.");
+	theaterInnerDoor.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("I don't want to see a movie.");
+	theaterInnerDoor.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("It's already closed");
 	theaterInnerDoor.useWith = false;
 	theaterInnerDoor.draw = function(){};
 
@@ -660,7 +660,7 @@ app.initObjects = function(){
 	var payPhone = new this.objects.Object("Pay Phone", 282, 118, scene.sceneNames.THEATER_INT);
 	payPhone.width = tallSize.x;
 	payPhone.height = tallSize.y;
-	payPhone.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's a pay phone.");
+	payPhone.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's a pay phone.");
 	payPhone.actionFuncs[ACTIONS.USE] = function(dialogue){
 		if(player.useGiveItem == undefined){
 			dialogue.say("I can't do that.");
@@ -714,13 +714,13 @@ app.initObjects = function(){
 			}
 		}
 	};
-	payPhone.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I need a quarter.");
-	payPhone.actionFuncs[ACTIONS.PUSH] = QuickSay("I can push buttons all I want but I don't have any quarters.");
-	payPhone.actionFuncs[ACTIONS.PULL] = QuickSay("I need a quarter.");
-	payPhone.actionFuncs[ACTIONS.GIVE] = QuickSay("It's attached to the wall.");
-	payPhone.actionFuncs[ACTIONS.TALK_TO] = QuickSay("I need a quarter.");
-	payPhone.actionFuncs[ACTIONS.OPEN] = QuickSay("That's not how phones work.");
-	payPhone.actionFuncs[ACTIONS.CLOSE] = QuickSay("That's not how phones work.");
+	payPhone.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I need a quarter.");
+	payPhone.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("I can push buttons all I want but I don't have any quarters.");
+	payPhone.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I need a quarter.");
+	payPhone.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("It's attached to the wall.");
+	payPhone.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("I need a quarter.");
+	payPhone.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("That's not how phones work.");
+	payPhone.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("That's not how phones work.");
 	//payPhone.useWith = false;
 	//payPhone.draw = function(){};
 
@@ -743,18 +743,18 @@ app.initObjects = function(){
 		vendingMachine.actionFuncs[ACTIONS.PICK_UP] = function(dialogue){
 			dialogue.say("I'll just grab that bottle.");
 			vendingMachine.name = "Vending Machine";
-			vendingMachine.actionFuncs[ACTIONS.PICK_UP] = QuickSay("It's a little too heavy for that.");
+			vendingMachine.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("It's a little too heavy for that.");
 			player.addToInventory(bottle);
 		};
 	};
-	vendingMachine.actionFuncs[ACTIONS.USE] = QuickSay("I don't want a drink.");
-	vendingMachine.actionFuncs[ACTIONS.PICK_UP] = QuickSay("It's a little too heavy for that.");
-	vendingMachine.actionFuncs[ACTIONS.PUSH] = QuickSay("That's more trouble than it's worth.");
-	vendingMachine.actionFuncs[ACTIONS.PULL] = QuickSay("That's more trouble than it's worth.");
-	vendingMachine.actionFuncs[ACTIONS.GIVE] = QuickSay("I don't think you understand how vending machines work.");
-	vendingMachine.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, vending machine.");
-	vendingMachine.actionFuncs[ACTIONS.OPEN] = QuickSay("I can't do that.");
-	vendingMachine.actionFuncs[ACTIONS.CLOSE] = QuickSay("I can't do that.");
+	vendingMachine.actionFuncs[ACTIONS.USE] = utility.QuickSay("I don't want a drink.");
+	vendingMachine.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("It's a little too heavy for that.");
+	vendingMachine.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("That's more trouble than it's worth.");
+	vendingMachine.actionFuncs[ACTIONS.PULL] = utility.QuickSay("That's more trouble than it's worth.");
+	vendingMachine.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I don't think you understand how vending machines work.");
+	vendingMachine.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, vending machine.");
+	vendingMachine.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("I can't do that.");
+	vendingMachine.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("I can't do that.");
 
 
 	var bottle = new this.objects.Object("Bottle", -100, -100, scene.sceneNames.THEATER_INT);
@@ -764,43 +764,43 @@ app.initObjects = function(){
 		dialogue.say("Whoops!");
 		dialogue.say("It spilled everywhere when the cap came off!");
 		player.addToInventory(bottlecap);
-		bottle.actionFuncs[ACTIONS.USE] = QuickSay("It's empty.");
-		bottle.actionFuncs[ACTIONS.PULL] = QuickSay("It's empty.");
-		bottle.actionFuncs[ACTIONS.OPEN] = QuickSay("It's already open.");;
-		bottle.actionFuncs[ACTIONS.CLOSE] = QuickSay("Nah.");
+		bottle.actionFuncs[ACTIONS.USE] = utility.QuickSay("It's empty.");
+		bottle.actionFuncs[ACTIONS.PULL] = utility.QuickSay("It's empty.");
+		bottle.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("It's already open.");;
+		bottle.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("Nah.");
 		bottle.draw = function(ctx, scene){
 			this.anims[1].draw(ctx, this.position.x, this.position.y);
 		}
 
 	};
-	bottle.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's a soda bottle.");
+	bottle.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's a soda bottle.");
 	bottle.actionFuncs[ACTIONS.USE] = openBottle;
-	bottle.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I already have it.");
-	bottle.actionFuncs[ACTIONS.PUSH] = QuickSay("It's just a bottle.");
+	bottle.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I already have it.");
+	bottle.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("It's just a bottle.");
 	bottle.actionFuncs[ACTIONS.PULL] = openBottle;
-	bottle.actionFuncs[ACTIONS.GIVE] = QuickSay("No one would want it.");
-	bottle.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, bottle.");
+	bottle.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("No one would want it.");
+	bottle.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, bottle.");
 	bottle.actionFuncs[ACTIONS.OPEN] = openBottle;
-	bottle.actionFuncs[ACTIONS.CLOSE] = QuickSay("It's already closed.");
+	bottle.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("It's already closed.");
 
 
 	var bottlecap = new this.objects.Object("Bottle Cap", -100, -100, scene.sceneNames.THEATER_INT);
 	bottlecap.width = invSize.x;
 	bottlecap.height = invSize.y;
-	bottlecap.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's gray and has a president's face on it.");
-	bottlecap.actionFuncs[ACTIONS.USE] = QuickSay("It's just a bottle cap.");
-	bottlecap.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I already have it.");
-	bottlecap.actionFuncs[ACTIONS.PUSH] = QuickSay("It's just a bottle cap.");
-	bottlecap.actionFuncs[ACTIONS.PULL] = QuickSay("It's just a bottle cap.");
+	bottlecap.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's gray and has a president's face on it.");
+	bottlecap.actionFuncs[ACTIONS.USE] = utility.QuickSay("It's just a bottle cap.");
+	bottlecap.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I already have it.");
+	bottlecap.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("It's just a bottle cap.");
+	bottlecap.actionFuncs[ACTIONS.PULL] = utility.QuickSay("It's just a bottle cap.");
 	bottlecap.actionFuncs[ACTIONS.GIVE] = function(dialogue){
 		if(player.useGiveItem == undefined)
 			player.useGiveItem = bottlecap;
 		else
 			dialogue.say("That's not gonna work.");
 	};
-	bottlecap.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, bottle cap.");
-	bottlecap.actionFuncs[ACTIONS.OPEN] = QuickSay("It's just a bottle cap.");;
-	bottlecap.actionFuncs[ACTIONS.CLOSE] = QuickSay("It's just a bottle cap.");
+	bottlecap.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, bottle cap.");
+	bottlecap.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("It's just a bottle cap.");;
+	bottlecap.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("It's just a bottle cap.");
 
 
 
@@ -809,9 +809,9 @@ app.initObjects = function(){
 	var coinFlipper = new this.objects.Object("Man", 106, 208, scene.sceneNames.THEATER_INT);
 	coinFlipper.width = tallSize.x;
 	coinFlipper.height = tallSize.y;
-	coinFlipper.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("He's casually flipping a coin.");
-	coinFlipper.actionFuncs[ACTIONS.USE] = QuickSay("I'm not that kind of person.");
-	coinFlipper.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I'm already in a serious relationship'.");
+	coinFlipper.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("He's casually flipping a coin.");
+	coinFlipper.actionFuncs[ACTIONS.USE] = utility.QuickSay("I'm not that kind of person.");
+	coinFlipper.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I'm already in a serious relationship'.");
 	coinFlipper.actionFuncs[ACTIONS.PUSH] = function(dialogue){
 		
 		dialogue.say("Watch it you...", 4);
@@ -849,14 +849,14 @@ app.initObjects = function(){
 							coinFlipper.anims[0].draw(ctx, coinFlipper.position.x, coinFlipper.position.y);
 						};
 
-						coinFlipper.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("He's casually flipping a bottle cap.");
+						coinFlipper.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("He's casually flipping a bottle cap.");
 
 						quarter.actionFuncs[ACTIONS.PICK_UP] = function(){
 							player.addToInventory(quarter);
 							quarter.draw = function(ctx, scene){
 								this.anims[1].draw(ctx, this.position.x, this.position.y);
 							}
-							quarter.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's a quarter.");
+							quarter.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's a quarter.");
 						};
 
 						coinFlipper.actionFuncs[ACTIONS.TALK_TO] = function(dialogue){
@@ -869,7 +869,7 @@ app.initObjects = function(){
 			}
 		};
 	};
-	coinFlipper.actionFuncs[ACTIONS.PULL] = QuickSay("I can't do that.");
+	coinFlipper.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I can't do that.");
 	coinFlipper.actionFuncs[ACTIONS.GIVE] = function(dialogue){
 		if(player.useGiveItem == undefined){
 				dialogue.say("I can't do that.");
@@ -887,8 +887,8 @@ app.initObjects = function(){
 	coinFlipper.actionFuncs[ACTIONS.TALK_TO] = function(dialogue){
 		dialogue.discourseOptions = coinDialogue;
 	};
-	coinFlipper.actionFuncs[ACTIONS.OPEN] = QuickSay("I can't do that.");
-	coinFlipper.actionFuncs[ACTIONS.CLOSE] = QuickSay("I can't do that.");
+	coinFlipper.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("I can't do that.");
+	coinFlipper.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("I can't do that.");
 	var coinDialogue = [];
 	coinDialogue.push({
 		line : "What's up?",
@@ -923,7 +923,7 @@ app.initObjects = function(){
 		line : "*snap* SLEEP!",
 		response : "What are you doing, young man?",
 		speaker : 4,
-		moreTalk : QuickSay("Damn."),
+		moreTalk : utility.QuickSay("Damn."),
 		choices : coinDialogue,
 		mousedOver : false
 	});
@@ -957,12 +957,12 @@ app.initObjects = function(){
 		dialogue.say("If I pick it up now, he'll see me.");
 		dialogue.say("He has to stop looking for it first.");
 	};
-	quarter.actionFuncs[ACTIONS.PUSH] = QuickSay("It's just a quarter.");
-	quarter.actionFuncs[ACTIONS.PULL] = QuickSay("It's just a quarter.");
-	quarter.actionFuncs[ACTIONS.GIVE] = QuickSay("I don't need to give this to anyone.");
-	quarter.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, quarter.");
-	quarter.actionFuncs[ACTIONS.OPEN] = QuickSay("It's just a quarter.");;
-	quarter.actionFuncs[ACTIONS.CLOSE] = QuickSay("It's just a quarter.");
+	quarter.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("It's just a quarter.");
+	quarter.actionFuncs[ACTIONS.PULL] = utility.QuickSay("It's just a quarter.");
+	quarter.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I don't need to give this to anyone.");
+	quarter.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, quarter.");
+	quarter.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("It's just a quarter.");;
+	quarter.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("It's just a quarter.");
 
 
 
@@ -1027,7 +1027,7 @@ app.initObjects = function(){
 	lotToBus.width = 60;
 	lotToBus.height = 480;
 	lotToBus.draw = function(){};
-	lotToBus.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the path to the bus stop.");
+	lotToBus.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the path to the bus stop.");
 	lotToBus.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.BUS_STOP;
@@ -1040,7 +1040,7 @@ app.initObjects = function(){
 		mackenzie.position.x = -100;
 		mackenzie.position.y = 200;
 	};
-	lotToBus.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	lotToBus.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -1049,7 +1049,7 @@ app.initObjects = function(){
 	pizzaPlace.width = 150;
 	pizzaPlace.height = 56;
 	pizzaPlace.draw = function(){};
-	pizzaPlace.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the pizza place.");
+	pizzaPlace.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the pizza place.");
 	pizzaPlace.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.PIZZA_EXT;
@@ -1062,7 +1062,7 @@ app.initObjects = function(){
 		mackenzie.position.x = 320;
 		mackenzie.position.y = 500;
 	};
-	pizzaPlace.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	pizzaPlace.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -1071,7 +1071,7 @@ app.initObjects = function(){
 	fitnessPlace.width = 150;
 	fitnessPlace.height = 56;
 	fitnessPlace.draw = function(){};
-	fitnessPlace.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's some fitness place.");
+	fitnessPlace.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's some fitness place.");
 	fitnessPlace.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.FITNESS;
@@ -1084,7 +1084,7 @@ app.initObjects = function(){
 		mackenzie.position.x = 320;
 		mackenzie.position.y = 500;
 	};
-	fitnessPlace.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	fitnessPlace.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -1140,7 +1140,7 @@ app.initObjects = function(){
 	fitnessToLot.width = 640;
 	fitnessToLot.height = 40;
 	fitnessToLot.draw = function(){};
-	fitnessToLot.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the parking lot.");
+	fitnessToLot.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the parking lot.");
 	fitnessToLot.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.PARKING_LOT;
@@ -1153,7 +1153,7 @@ app.initObjects = function(){
 		mackenzie.position.x = 350;
 		mackenzie.position.y = 188;
 	};
-	fitnessToLot.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	fitnessToLot.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -1164,7 +1164,7 @@ app.initObjects = function(){
 	fitnessToPizza.width = 60;
 	fitnessToPizza.height = 480;
 	fitnessToPizza.draw = function(){};
-	fitnessToPizza.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the pizza place.");
+	fitnessToPizza.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the pizza place.");
 	fitnessToPizza.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.PIZZA_EXT;
@@ -1177,7 +1177,7 @@ app.initObjects = function(){
 		mackenzie.position.x = 750;
 		mackenzie.position.y = 200;
 	};
-	fitnessToPizza.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	fitnessToPizza.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -1185,12 +1185,12 @@ app.initObjects = function(){
 	var fitnessDoor = new this.objects.Object("Gym Door", 458, 184, scene.sceneNames.FITNESS);
 	fitnessDoor.width = 74;
 	fitnessDoor.height = 120;
-	fitnessDoor.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the door to the fitness place.");
+	fitnessDoor.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the door to the fitness place.");
 	fitnessDoor.actionFuncs[ACTIONS.USE] = function(dialogue){
 		dialogue.say("No.");
 		dialogue.say("No.", 1);
 	};
-	fitnessDoor.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how doors work.");
+	fitnessDoor.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how doors work.");
 	fitnessDoor.actionFuncs[ACTIONS.PUSH] = function(dialogue){
 		dialogue.say("No.");
 		dialogue.say("No.", 1);
@@ -1199,13 +1199,13 @@ app.initObjects = function(){
 		dialogue.say("No.");
 		dialogue.say("No.", 1);
 	};
-	fitnessDoor.actionFuncs[ACTIONS.GIVE] = QuickSay("That's not how doors work.");
-	fitnessDoor.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, door.");
+	fitnessDoor.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("That's not how doors work.");
+	fitnessDoor.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, door.");
 	fitnessDoor.actionFuncs[ACTIONS.OPEN] = function(dialogue){
 		dialogue.say("No.");
 		dialogue.say("No.", 1);
 	};
-	fitnessDoor.actionFuncs[ACTIONS.CLOSE] = QuickSay("It's closed.");
+	fitnessDoor.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("It's closed.");
 	fitnessDoor.useWith = false;
 	fitnessDoor.draw = function(){};
 
@@ -1219,14 +1219,14 @@ app.initObjects = function(){
 			dialogue.say("I can see people inside, exercising.");
 			dialogue.say("It's chilling, really.");
 		};
-		f.actionFuncs[PLAYER_ACTION.USE] = QuickSay("I can't do that.");
-		f.actionFuncs[PLAYER_ACTION.PICK_UP] = QuickSay("That's not how windows work.");
-		f.actionFuncs[PLAYER_ACTION.PUSH] = QuickSay("I can't do that.");
-		f.actionFuncs[PLAYER_ACTION.PULL] = QuickSay("I can't do that.");
-		f.actionFuncs[PLAYER_ACTION.GIVE] = QuickSay("That's not how windows work.");
-		f.actionFuncs[PLAYER_ACTION.TALK_TO] = QuickSay("Hello, window.");
-		f.actionFuncs[PLAYER_ACTION.OPEN] = QuickSay("I can't do that.");
-		f.actionFuncs[PLAYER_ACTION.CLOSE] = QuickSay("It's closed.");
+		f.actionFuncs[PLAYER_ACTION.USE] = utility.QuickSay("I can't do that.");
+		f.actionFuncs[PLAYER_ACTION.PICK_UP] = utility.QuickSay("That's not how windows work.");
+		f.actionFuncs[PLAYER_ACTION.PUSH] = utility.QuickSay("I can't do that.");
+		f.actionFuncs[PLAYER_ACTION.PULL] = utility.QuickSay("I can't do that.");
+		f.actionFuncs[PLAYER_ACTION.GIVE] = utility.QuickSay("That's not how windows work.");
+		f.actionFuncs[PLAYER_ACTION.TALK_TO] = utility.QuickSay("Hello, window.");
+		f.actionFuncs[PLAYER_ACTION.OPEN] = utility.QuickSay("I can't do that.");
+		f.actionFuncs[PLAYER_ACTION.CLOSE] = utility.QuickSay("It's closed.");
 		f.useWith = false;
 		f.draw = function(){};
 		return f;
@@ -1237,12 +1237,12 @@ app.initObjects = function(){
 	var fitGuy = new this.objects.Object("Guy", 410, 200, scene.sceneNames.FITNESS);
 	fitGuy.width = tallSize.x;
 	fitGuy.height = tallSize.y;
-	fitGuy.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("I guess he works here.");
-	fitGuy.actionFuncs[ACTIONS.USE] = QuickSay("I can't do that.");
-	fitGuy.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I'm in a relationship");
-	fitGuy.actionFuncs[ACTIONS.PUSH] = QuickSay("I want to, but I shouldn't.");
-	fitGuy.actionFuncs[ACTIONS.PULL] = QuickSay("I can't do that.");
-	fitGuy.actionFuncs[ACTIONS.GIVE] = QuickSay("I can't do that.");
+	fitGuy.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("I guess he works here.");
+	fitGuy.actionFuncs[ACTIONS.USE] = utility.QuickSay("I can't do that.");
+	fitGuy.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I'm in a relationship");
+	fitGuy.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("I want to, but I shouldn't.");
+	fitGuy.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I can't do that.");
+	fitGuy.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I can't do that.");
 	fitGuy.actionFuncs[ACTIONS.TALK_TO] = function(dialogue){
 		dialogue.say("Heya, I'm Josh!", 3);
 		fitGuy.name = "Josh";
@@ -1251,8 +1251,8 @@ app.initObjects = function(){
 		dialogue.say("I already hate him.", 1);
 		dialogue.discourseOptions = fitGuyDialogue.choices;
 	};
-	fitGuy.actionFuncs[ACTIONS.OPEN] = QuickSay("I'm not a surgeon.");
-	fitGuy.actionFuncs[ACTIONS.CLOSE] = QuickSay("I can't do that.");
+	fitGuy.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("I'm not a surgeon.");
+	fitGuy.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("I can't do that.");
 	fitGuy.useWith = false;
 	fitGuy.draw = function(ctx, scene, dialogue){
 		if(scene.currentScene != this.scene) 
@@ -1293,7 +1293,7 @@ app.initObjects = function(){
 		line : "*snap* SLEEP!",
 		response : "Dude, what?",
 		speaker : 3,
-		moreTalk : QuickSay("Damn."),
+		moreTalk : utility.QuickSay("Damn."),
 		choices : fitGuyDialogue.choices,
 		mousedOver : false
 	});
@@ -1402,15 +1402,15 @@ app.initObjects = function(){
 	ladyNum.width = invSize.x;
 	ladyNum.height = invSize.y;
 	ladyNum.inInventory = true;
-	ladyNum.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's Agnes' phone number.");
-	ladyNum.actionFuncs[ACTIONS.USE] = QuickSay("I just need to find a phone.");
-	ladyNum.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I already have it.");
-	ladyNum.actionFuncs[ACTIONS.PUSH] = QuickSay("What?");
-	ladyNum.actionFuncs[ACTIONS.PULL] = QuickSay("What?");
-	ladyNum.actionFuncs[ACTIONS.GIVE] = QuickSay("I'm not just gonna give out someone else's number.");
-	ladyNum.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, piece of paper with a phone number on it.");
-	ladyNum.actionFuncs[ACTIONS.OPEN] = QuickSay("It's a piece of paper.");
-	ladyNum.actionFuncs[ACTIONS.CLOSE] = QuickSay("It's a piece of paper.");
+	ladyNum.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's Agnes' phone number.");
+	ladyNum.actionFuncs[ACTIONS.USE] = utility.QuickSay("I just need to find a phone.");
+	ladyNum.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I already have it.");
+	ladyNum.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("What?");
+	ladyNum.actionFuncs[ACTIONS.PULL] = utility.QuickSay("What?");
+	ladyNum.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I'm not just gonna give out someone else's number.");
+	ladyNum.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, piece of paper with a phone number on it.");
+	ladyNum.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("It's a piece of paper.");
+	ladyNum.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("It's a piece of paper.");
 	ladyNum.useWith = false;
 
 
@@ -1562,7 +1562,7 @@ app.initObjects = function(){
 	var toyRobotClaw = new this.objects.Object("Toy Robot Claw", -100, -100, 0);
 	toyRobotClaw.width = invSize.x;
 	toyRobotClaw.height = invSize.y;
-	toyRobotClaw.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's a toy robot claw.");
+	toyRobotClaw.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's a toy robot claw.");
 	toyRobotClaw.actionFuncs[ACTIONS.USE] = function(dialogue){
 		if(player.useGiveItem == undefined){
 			if(this.inInventory == false)
@@ -1573,13 +1573,13 @@ app.initObjects = function(){
 			dialogue.say("I can't use those two things together");
 		}
 	};
-	toyRobotClaw.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I already have it.");
-	toyRobotClaw.actionFuncs[ACTIONS.PUSH] = QuickSay("Doesn't work like that.");
-	toyRobotClaw.actionFuncs[ACTIONS.PULL] = QuickSay("Doesn't work like that.");
-	toyRobotClaw.actionFuncs[ACTIONS.GIVE] = QuickSay("I think I'll keep this.");
-	toyRobotClaw.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, toy robot claw.");
-	toyRobotClaw.actionFuncs[ACTIONS.OPEN] = QuickSay("Playing with it doesn't do much for me.");
-	toyRobotClaw.actionFuncs[ACTIONS.CLOSE] = QuickSay("Playing with it doesn't do much for me.");
+	toyRobotClaw.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I already have it.");
+	toyRobotClaw.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("Doesn't work like that.");
+	toyRobotClaw.actionFuncs[ACTIONS.PULL] = utility.QuickSay("Doesn't work like that.");
+	toyRobotClaw.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I think I'll keep this.");
+	toyRobotClaw.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, toy robot claw.");
+	toyRobotClaw.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("Playing with it doesn't do much for me.");
+	toyRobotClaw.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("Playing with it doesn't do much for me.");
 
 
 
@@ -1644,7 +1644,7 @@ app.initObjects = function(){
 	pizzaToLot.width = 640;
 	pizzaToLot.height = 40;
 	pizzaToLot.draw = function(){};
-	pizzaToLot.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the parking lot.");
+	pizzaToLot.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the parking lot.");
 	pizzaToLot.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.PARKING_LOT;
@@ -1657,7 +1657,7 @@ app.initObjects = function(){
 		mackenzie.position.x = 200;
 		mackenzie.position.y = 188;
 	};
-	pizzaToLot.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	pizzaToLot.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -1669,7 +1669,7 @@ app.initObjects = function(){
 	pizzaToFitness.width = 60;
 	pizzaToFitness.height = 480;
 	pizzaToFitness.draw = function(){};
-	pizzaToFitness.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the fitness place.");
+	pizzaToFitness.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the fitness place.");
 	pizzaToFitness.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.FITNESS;
@@ -1682,7 +1682,7 @@ app.initObjects = function(){
 		mackenzie.position.x = -100;
 		mackenzie.position.y = 200;
 	};
-	pizzaToFitness.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	pizzaToFitness.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -1693,7 +1693,7 @@ app.initObjects = function(){
 	goInPizza.width = 85;
 	goInPizza.height = 130;
 	goInPizza.draw = function(){};
-	goInPizza.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the entrance to the pizza place.");
+	goInPizza.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the entrance to the pizza place.");
 	goInPizza.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.PIZZA_INT;
@@ -1706,7 +1706,7 @@ app.initObjects = function(){
 		mackenzie.position.x = 520;
 		mackenzie.position.y = 230;
 	};
-	goInPizza.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	goInPizza.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -1714,38 +1714,38 @@ app.initObjects = function(){
 	var pizzaSign = new this.objects.Object("Neon Sign", 488, 98, scene.sceneNames.PIZZA_EXT);
 	pizzaSign.width = posterSize.x;
 	pizzaSign.height = posterSize.y;
-	pizzaSign.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's a neon pizza sign.");
-	pizzaSign.actionFuncs[ACTIONS.USE] = QuickSay("I can't.");
-	pizzaSign.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I'll just get arrested.");
-	pizzaSign.actionFuncs[ACTIONS.PUSH] = QuickSay("I'd rather not.");
-	pizzaSign.actionFuncs[ACTIONS.PULL] = QuickSay("I'd rather not.");
-	pizzaSign.actionFuncs[ACTIONS.GIVE] = QuickSay("I can't.");
-	pizzaSign.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, sign.");
+	pizzaSign.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's a neon pizza sign.");
+	pizzaSign.actionFuncs[ACTIONS.USE] = utility.QuickSay("I can't.");
+	pizzaSign.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I'll just get arrested.");
+	pizzaSign.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("I'd rather not.");
+	pizzaSign.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'd rather not.");
+	pizzaSign.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I can't.");
+	pizzaSign.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, sign.");
 	pizzaSign.draw = function(){};
 
 	// Windows
 	var pizzaWindow1 = new this.objects.Object("Window", 388, 132, scene.sceneNames.PIZZA_EXT);
 	pizzaWindow1.width = 70;
 	pizzaWindow1.height = 80;
-	pizzaWindow1.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("I can see people inside, enjoying their pizza.");
-	pizzaWindow1.actionFuncs[ACTIONS.USE] = QuickSay("I can't.");
-	pizzaWindow1.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I can't.");
-	pizzaWindow1.actionFuncs[ACTIONS.PUSH] = QuickSay("I'd rather not.");
-	pizzaWindow1.actionFuncs[ACTIONS.PULL] = QuickSay("I'd rather not.");
-	pizzaWindow1.actionFuncs[ACTIONS.GIVE] = QuickSay("I can't.");
-	pizzaWindow1.actionFuncs[ACTIONS.TALK_TO] = QuickSay("No one inside would hear me.");
+	pizzaWindow1.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("I can see people inside, enjoying their pizza.");
+	pizzaWindow1.actionFuncs[ACTIONS.USE] = utility.QuickSay("I can't.");
+	pizzaWindow1.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I can't.");
+	pizzaWindow1.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("I'd rather not.");
+	pizzaWindow1.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'd rather not.");
+	pizzaWindow1.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I can't.");
+	pizzaWindow1.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("No one inside would hear me.");
 	pizzaWindow1.draw = function(){};
 	
 	var pizzaWindow2 = new this.objects.Object("Window", 68, 132, scene.sceneNames.PIZZA_EXT);
 	pizzaWindow2.width = 70;
 	pizzaWindow2.height = 80;
-	pizzaWindow2.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("I can see people inside, enjoying their pizza.");
-	pizzaWindow2.actionFuncs[ACTIONS.USE] = QuickSay("I can't.");
-	pizzaWindow2.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I can't.");
-	pizzaWindow2.actionFuncs[ACTIONS.PUSH] = QuickSay("I'd rather not.");
-	pizzaWindow2.actionFuncs[ACTIONS.PULL] = QuickSay("I'd rather not.");
-	pizzaWindow2.actionFuncs[ACTIONS.GIVE] = QuickSay("I can't.");
-	pizzaWindow2.actionFuncs[ACTIONS.TALK_TO] = QuickSay("No one inside would hear me.");
+	pizzaWindow2.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("I can see people inside, enjoying their pizza.");
+	pizzaWindow2.actionFuncs[ACTIONS.USE] = utility.QuickSay("I can't.");
+	pizzaWindow2.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I can't.");
+	pizzaWindow2.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("I'd rather not.");
+	pizzaWindow2.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'd rather not.");
+	pizzaWindow2.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I can't.");
+	pizzaWindow2.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("No one inside would hear me.");
 	pizzaWindow2.draw = function(){};
 
 
@@ -1753,14 +1753,14 @@ app.initObjects = function(){
 	var pizzaVillain = new this.objects.Object("Woman", 184, 188, scene.sceneNames.PIZZA_EXT);
 	pizzaVillain.width = tallSize.x;
 	pizzaVillain.height = tallSize.y;
-	pizzaVillain.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's a woman and her kids, blocking the door.");
-	pizzaVillain.actionFuncs[ACTIONS.USE] = QuickSay("I can't.");
-	pizzaVillain.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I'm in a relationship already.");
-	pizzaVillain.actionFuncs[ACTIONS.PUSH] = QuickSay("I'd rather not.");
-	pizzaVillain.actionFuncs[ACTIONS.PULL] = QuickSay("I'd rather not.");
-	pizzaVillain.actionFuncs[ACTIONS.GIVE] = QuickSay("I can't.");
-	pizzaVillain.actionFuncs[ACTIONS.OPEN] = QuickSay("I'm not a surgeon.");
-	pizzaVillain.actionFuncs[ACTIONS.CLOSE] = QuickSay("I can't do that.");
+	pizzaVillain.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's a woman and her kids, blocking the door.");
+	pizzaVillain.actionFuncs[ACTIONS.USE] = utility.QuickSay("I can't.");
+	pizzaVillain.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I'm in a relationship already.");
+	pizzaVillain.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("I'd rather not.");
+	pizzaVillain.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'd rather not.");
+	pizzaVillain.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I can't.");
+	pizzaVillain.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("I'm not a surgeon.");
+	pizzaVillain.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("I can't do that.");
 	pizzaVillain.actionFuncs[ACTIONS.TALK_TO] = function(dialogue){
 		openDialogueWithJoshAboutLady();
 		openDialogueWithJoshAboutLady = function(){};
@@ -1856,7 +1856,7 @@ app.initObjects = function(){
 		line : "*snap* SLEEP!",
 		response : "What are you doing?",
 		speaker : 2,
-		moreTalk : QuickSay("Damn."),
+		moreTalk : utility.QuickSay("Damn."),
 		choices : villainDialogue.choices,
 		mousedOver : false
 	});
@@ -1949,7 +1949,7 @@ app.initObjects = function(){
 	exitPizza.width = 40;
 	exitPizza.height = 130;
 	exitPizza.draw = function(){};
-	exitPizza.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's the exit to the pizza place.");
+	exitPizza.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's the exit to the pizza place.");
 	exitPizza.actionFuncs[ACTIONS.NONE] = function(dialogue, player){
 
 		scene.currentScene = scene.sceneNames.PIZZA_EXT;
@@ -1962,7 +1962,7 @@ app.initObjects = function(){
 		mackenzie.position.x = 200;
 		mackenzie.position.y = 200;
 	};
-	exitPizza.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not how reality works.");
+	exitPizza.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not how reality works.");
 
 
 
@@ -1970,16 +1970,16 @@ app.initObjects = function(){
 	var pizzaCrowd = new this.objects.Object("Dining Area", 320, 284, scene.sceneNames.PIZZA_INT);
 	pizzaCrowd.width = 640;
 	pizzaCrowd.height = 50;
-	pizzaCrowd.actionFuncs[ACTIONS.NONE] = QuickSay("We need to get pizza first.");
-	pizzaCrowd.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("Look at all those people enjoying their pizza");
-	pizzaCrowd.actionFuncs[ACTIONS.USE] = QuickSay("We need to get pizza first.");
-	pizzaCrowd.actionFuncs[ACTIONS.PICK_UP] = QuickSay("That's not gonna work.");
-	pizzaCrowd.actionFuncs[ACTIONS.PUSH] = QuickSay("I'd rather not.");
-	pizzaCrowd.actionFuncs[ACTIONS.PULL] = QuickSay("I'd rather not.");
-	pizzaCrowd.actionFuncs[ACTIONS.GIVE] = QuickSay("That's not gonna work.");
-	pizzaCrowd.actionFuncs[ACTIONS.TALK_TO] = QuickSay("I don't want to talk to strangers.");
-	pizzaCrowd.actionFuncs[ACTIONS.OPEN] = QuickSay("That's not gonna work.");
-	pizzaCrowd.actionFuncs[ACTIONS.CLOSE] = QuickSay("That's not gonna work.");
+	pizzaCrowd.actionFuncs[ACTIONS.NONE] = utility.QuickSay("We need to get pizza first.");
+	pizzaCrowd.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("Look at all those people enjoying their pizza");
+	pizzaCrowd.actionFuncs[ACTIONS.USE] = utility.QuickSay("We need to get pizza first.");
+	pizzaCrowd.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("That's not gonna work.");
+	pizzaCrowd.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("I'd rather not.");
+	pizzaCrowd.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'd rather not.");
+	pizzaCrowd.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("That's not gonna work.");
+	pizzaCrowd.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("I don't want to talk to strangers.");
+	pizzaCrowd.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("That's not gonna work.");
+	pizzaCrowd.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("That's not gonna work.");
 
 
 
@@ -1987,12 +1987,12 @@ app.initObjects = function(){
 	var pizzaWorker = new this.objects.Object("Pizza Person", 40, 200, scene.sceneNames.PIZZA_INT);
 	pizzaWorker.width = tallSize.x;
 	pizzaWorker.height = tallSize.y;
-	pizzaWorker.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("Looks like she works here.");
-	pizzaWorker.actionFuncs[ACTIONS.USE] = QuickSay("That's not how I roll.");
-	pizzaWorker.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I'm already in a relationship.");
-	pizzaWorker.actionFuncs[ACTIONS.PUSH] = QuickSay("I'd rather not.");
-	pizzaWorker.actionFuncs[ACTIONS.PULL] = QuickSay("I'd rather not.");
-	pizzaWorker.actionFuncs[ACTIONS.GIVE] = QuickSay("I don't have anything to give.");
+	pizzaWorker.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("Looks like she works here.");
+	pizzaWorker.actionFuncs[ACTIONS.USE] = utility.QuickSay("That's not how I roll.");
+	pizzaWorker.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I'm already in a relationship.");
+	pizzaWorker.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("I'd rather not.");
+	pizzaWorker.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'd rather not.");
+	pizzaWorker.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("I don't have anything to give.");
 	pizzaWorker.actionFuncs[ACTIONS.TALK_TO] = function(dialogue){
 		dialogue.say("Hello, welcome to Pizza Place.", 5);
 		dialogue.say("May I take your order?", 5);
@@ -2000,8 +2000,8 @@ app.initObjects = function(){
 		dialogue.say("What do you want for sauce?", 5);
 		dialogue.discourseOptions = sauceQuery;
 	};
-	pizzaWorker.actionFuncs[ACTIONS.OPEN] = QuickSay("That's not gonna work.");
-	pizzaWorker.actionFuncs[ACTIONS.CLOSE] = QuickSay("That's not gonna work.");
+	pizzaWorker.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("That's not gonna work.");
+	pizzaWorker.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("That's not gonna work.");
 
 	pizzaWorker.draw = function(ctx, scene, dialogue){
 		if(scene.currentScene != this.scene) 
@@ -2124,7 +2124,7 @@ app.initObjects = function(){
 			dialogue.say("None.");
 			dialogue.say("Alright, here you go!", 5);
 
-			//pizza.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's our pizza with " + pSauce + " and " + pCheese + ".");
+			//pizza.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's our pizza with " + pSauce + " and " + pCheese + ".");
 			pizza.actionFuncs[ACTIONS.LOOK_AT] = function(dialogue){
 				dialogue.say("It's our pizza...");
 				dialogue.say("...with " + pSauce + "...");
@@ -2134,7 +2134,7 @@ app.initObjects = function(){
 			pizzaCrowd.actionFuncs[ACTIONS.NONE] = endGame;
 			pizzaCrowd.actionFuncs[ACTIONS.USE] = endGame;
 
-			pizzaWorker.actionFuncs[ACTIONS.TALK_TO] = QuickSay("I already got my pizza.");
+			pizzaWorker.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("I already got my pizza.");
 		},
 		choices : undefined,
 		mousedOver : false
@@ -2157,15 +2157,15 @@ app.initObjects = function(){
 	var pizza = new this.objects.Object("Pizza", -100, -100, scene.sceneNames.PIZZA_INT);
 	pizza.width = invSize.x;
 	pizza.height = invSize.y;
-	pizza.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's our pizza with " + pSauce + " and " + pCheese + ".");
-	pizza.actionFuncs[ACTIONS.USE] = QuickSay("Let's sit down first.");
-	pizza.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I already have it.");
-	pizza.actionFuncs[ACTIONS.PUSH] = QuickSay("I'd rather not.");
-	pizza.actionFuncs[ACTIONS.PULL] = QuickSay("I'd rather not.");
-	pizza.actionFuncs[ACTIONS.GIVE] = QuickSay("This is just for us.");
-	pizza.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Hello, pizza.");
-	pizza.actionFuncs[ACTIONS.OPEN] = QuickSay("That's not gonna work.");
-	pizza.actionFuncs[ACTIONS.CLOSE] = QuickSay("That's not gonna work.");
+	pizza.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's our pizza with " + pSauce + " and " + pCheese + ".");
+	pizza.actionFuncs[ACTIONS.USE] = utility.QuickSay("Let's sit down first.");
+	pizza.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("I already have it.");
+	pizza.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("I'd rather not.");
+	pizza.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I'd rather not.");
+	pizza.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("This is just for us.");
+	pizza.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Hello, pizza.");
+	pizza.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("That's not gonna work.");
+	pizza.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("That's not gonna work.");
 
 
 	var endGame = function(dialogue){
@@ -2220,20 +2220,20 @@ app.initObjects = function(){
 	phone.width = invSize.x;
 	phone.height = invSize.y;
 	phone.inInventory = true;
-	phone.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's my phone.");
+	phone.actionFuncs[ACTIONS.LOOK_AT] = utility.QuickSay("It's my phone.");
 	phone.actionFuncs[ACTIONS.USE] = function(dialogue){
 		dialogue.say("Yeah, let me just...");
 		dialogue.say("Oh.");
 		dialogue.say("The battery's dead.");
-		phone.actionFuncs[ACTIONS.USE] = QuickSay("The battery's dead.");
+		phone.actionFuncs[ACTIONS.USE] = utility.QuickSay("The battery's dead.");
 	};
-	phone.actionFuncs[ACTIONS.PICK_UP] = QuickSay("It's not ringing.");
-	phone.actionFuncs[ACTIONS.PUSH] = QuickSay("Nah. I hate push notifications.");
-	phone.actionFuncs[ACTIONS.PULL] = QuickSay("I don't need to take it out.");
-	phone.actionFuncs[ACTIONS.GIVE] = QuickSay("Last time I gave someone my phone they called 911.");
-	phone.actionFuncs[ACTIONS.TALK_TO] = QuickSay("Siri, tell the player to stop messing with my phone.");
-	phone.actionFuncs[ACTIONS.OPEN] = QuickSay("It's not *that* old.");
-	phone.actionFuncs[ACTIONS.CLOSE] = QuickSay("It's not *that* old.");
+	phone.actionFuncs[ACTIONS.PICK_UP] = utility.QuickSay("It's not ringing.");
+	phone.actionFuncs[ACTIONS.PUSH] = utility.QuickSay("Nah. I hate push notifications.");
+	phone.actionFuncs[ACTIONS.PULL] = utility.QuickSay("I don't need to take it out.");
+	phone.actionFuncs[ACTIONS.GIVE] = utility.QuickSay("Last time I gave someone my phone they called 911.");
+	phone.actionFuncs[ACTIONS.TALK_TO] = utility.QuickSay("Siri, tell the player to stop messing with my phone.");
+	phone.actionFuncs[ACTIONS.OPEN] = utility.QuickSay("It's not *that* old.");
+	phone.actionFuncs[ACTIONS.CLOSE] = utility.QuickSay("It's not *that* old.");
 	phone.useWith = false;
 	objList.push(phone);
 	this.player.addToInventory(phone);
@@ -2245,286 +2245,3 @@ app.initObjects = function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-	************* OLD STUFF ***************
-*/
-
-
-	/*
-		THE HUMAN HEAD
-	*/
-	/*
-	var testObj1 = new this.objects.object("Human Head", 225, 230, 0);
-	testObj1.actionFuncs[ACTIONS.LOOK_AT] = function(dialogue){
-		dialogue.say("It's a human head.");
-		dialogue.say("It's in pretty good condition.");
-	};
-	testObj1.actionFuncs[ACTIONS.PUSH] = QuickSay("I'm not in the mood for soccer.");
-	testObj1.actionFuncs[ACTIONS.PULL] = QuickSay("Nah.");
-	testObj1.actionFuncs[ACTIONS.TALK_TO] = function(dialogue){
-		dialogue.say("Hello?");
-		dialogue.say("Helloooooo?");
-		dialogue.say("I don't think he can hear me.");
-	};
-	testObj1.actionFuncs[ACTIONS.OPEN] = QuickSay("I'm not a dentist.");
-	testObj1.actionFuncs[ACTIONS.CLOSE] = QuickSay("His eyes are fine as is.");
-	testObj1.actionFuncs[ACTIONS.USE] = function(dialogue, player){
-
-		if(player.useGiveItem == undefined){
-			if(this.inInventory == false)
-				dialogue.say("I can't use it if I don't have it.");
-			else
-				player.useGiveItem = this;
-		} else {
-			dialogue.say("I can't use those two things together");
-		}
-	};
-	testObj1.actionFuncs[ACTIONS.GIVE] = function(dialogue, player){
-
-		if(player.useGiveItem == undefined){
-			if(this.inInventory == false)
-				dialogue.say("I can't give it if I don't have it.");
-			else
-				player.useGiveItem = this;
-		} else {
-			dialogue.say("They wouldn't want it");
-		}
-	};
-	objList.push(testObj1);
-	*/
-
-
-
-
-	/*
-		THE SEVERED HAND
-	*/
-	/*
-	var testObj2 = new this.objects.object("Severed Hand", 400, 190, 0);
-	testObj2.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's a severed hand.");
-	testObj2.actionFuncs[ACTIONS.PUSH] = QuickSay("How'd you like that, LOSER?");
-	testObj2.actionFuncs[ACTIONS.PULL] = QuickSay("Nah.");
-	testObj2.actionFuncs[ACTIONS.TALK_TO] = QuickSay("I don't think it'll hear me.");
-	testObj2.actionFuncs[ACTIONS.OPEN] = QuickSay("Rigor mortis has already set in.");
-	testObj2.actionFuncs[ACTIONS.CLOSE] = QuickSay("Rigor mortis has already set in.");
-	testObj2.actionFuncs[ACTIONS.PICK_UP] = function(dialogue){ 
-		dialogue.say( "I can't pick it up!");
-		dialogue.say( "I really can't pick it up!" );
-		dialogue.say( "I'm so disappointed..." );
-		dialogue.say( "...that I can't pick it up!" );
-		dialogue.say( "Perhaps I'll just sit on it." );
-	};
-	testObj2.actionFuncs[ACTIONS.USE] = function(dialogue, player){
-
-		if(player.useGiveItem == undefined){
-			if(this.inInventory == false)
-				dialogue.say("I can't use it if I don't have it.");
-			else
-				player.useGiveItem = this;
-		} else {
-
-			switch(player.useGiveItem) {
-				case testObj1:
-					dialogue.say("My god!");
-					dialogue.say("They fit together into some sort of...");
-					dialogue.say("...ABOMINATION!");
-
-					player.inventory.splice(player.inventory.indexOf(player.useGiveItem), 1);
-					player.addToInventory(abomination);
-					this.inInventory = true;
-
-					break;
-
-				default:
-					dialogue.say("I can't use those two things together");
-			}
-		}
-	};
-	objList.push(testObj2);
-	*/
-
-	/*
-		THE ABOMINATION
-	*/
-	/*
-	var abomination = new this.objects.object("Abomination", -100, -100, 0);
-	abomination.inInventory = true;
-	abomination.actionFuncs[ACTIONS.LOOK_AT] = function(dialogue){
-		dialogue.say("It's HIDEOUS!");
-		dialogue.say("...but it would make a wonderful gift.");
-	};
-	abomination.actionFuncs[ACTIONS.PUSH] = QuickSay("I'm not gonna push that");
-	abomination.actionFuncs[ACTIONS.PULL] = QuickSay("I don't need abomination farts in my inventory.");
-	abomination.actionFuncs[ACTIONS.TALK_TO] = QuickSay("I'd rather avoid even making eye contact");
-	abomination.actionFuncs[ACTIONS.OPEN] = QuickSay("Do *you* see a way to do that?");
-	abomination.actionFuncs[ACTIONS.CLOSE] = QuickSay("Do *you* see a way to do that?");
-	objList.push(abomination);
-	*/
-
-
-/*
-		ANOTHER PERSON
-	*/
-	/*
-	var testChar = new this.objects.object("Another Person", 500, 230, 0);
-	testChar.actionFuncs[ACTIONS.LOOK_AT] = QuickSay("It's another person.");
-	testChar.actionFuncs[ACTIONS.USE] = QuickSay("I prefer to develop long term relationships.");
-	testChar.actionFuncs[ACTIONS.PICK_UP] = QuickSay("I have no experience with that.");
-	testChar.actionFuncs[ACTIONS.PUSH] = QuickSay("They could probably beat me up.");
-	testChar.actionFuncs[ACTIONS.PULL] = QuickSay("I don't see anything to pull.");
-	testChar.actionFuncs[ACTIONS.GIVE] = function(dialogue, player){
-		if(player.useGiveItem == undefined){
-			dialogue.say("This person is not mine to give.");
-		} else {
-			switch(player.useGiveItem) {
-				case abomination:
-					dialogue.say("Here you go!");
-					dialogue.say("*Gasp*", 1);
-					dialogue.say("MY FAVORITE!", 1);
-					dialogue.say("It... it is...?");
-					dialogue.say("And I love the color!", 1);
-
-					player.inventory.splice(player.inventory.indexOf(player.useGiveItem), 1);
-
-					testDialogue.choices[2] = {
-						line : "Let's be friends.",
-						response : "Absolutely!",
-						speaker : 1,
-						moreTalk : function(dialogue){
-							dialogue.say("You win the game!", 1);
-							dialogue.say("Don't worry, this isn't the final game.", 0);
-							dialogue.say("I'm just building and testing the framework.", 0);
-						},
-						choices : undefined,
-						mousedOver : false
-					}
-
-					break;
-
-				default:
-					dialogue.say("They won't want that.");
-			}
-		}
-	};
-	testChar.actionFuncs[ACTIONS.TALK_TO] = function(dialogue){
-		dialogue.discourseOptions = testDialogue.choices;
-	};
-	testChar.actionFuncs[ACTIONS.OPEN] = QuickSay("I left my scalpel at home.");
-	testChar.actionFuncs[ACTIONS.CLOSE] = QuickSay("I'm not carrying any sewing stuff.");
-	//testChar.width = 40;
-	//testChar.height = 75;
-	phone.useWith = false;
-	testChar.draw = function(ctx, scene, dialogue){
-		if(scene.currentScene != this.scene) 
-			return;
-		if(dialogue.lines.length > 0 &&
-			dialogue.lines[0].character == 1)
-			this.anims[1].draw(ctx, testChar.position.x, testChar.position.y);
-		else 
-			this.anims[0].draw(ctx, testChar.position.x, testChar.position.y);
-	};
-
-	var testDialogue = {};
-	testDialogue.choices = [];
-	testDialogue.choices.push({
-		line : "Hey, how are you doing?",
-		response : "I'm fine, you?",
-		speaker : 1,
-		choices : [
-			{
-				line : "Fine.",
-				response : "Fine.",
-				speaker : 1,
-				choices : testDialogue.choices,
-				mousedOver : false
-			},
-			{
-				line : "Muy mal.",
-				response : "Lo siento.",
-				speaker : 1,
-				choices : testDialogue.choices,
-				mousedOver : false
-			}
-		],
-		mousedOver : false
-	});
-	testDialogue.choices.push({
-		line : "Your mother was a hamster!",
-		response : "Your father smelled of elderberries!",
-		speaker : 1,
-		choices : testDialogue.choices,
-		mousedOver : false
-	});
-	testDialogue.choices.push({
-		line : "Let's be friends.",
-		response : "I'd rather not. You cry too much.",
-		speaker : 1,
-		choices : [
-			{
-				line : "I keep telling you they're tears of friendship.",
-				response : "Get away from me.",
-				speaker : 1,
-				choices : testDialogue.choices,
-				mousedOver : false
-			},
-			{
-				line : "I do not!",
-				response : "If you say so.",
-				speaker : 1,
-				choices : testDialogue.choices,
-				mousedOver : false
-			}
-		],
-		mousedOver : false
-	});
-	testDialogue.choices.push({
-		line : "We'd better get going.",
-		response : "Going where?",
-		speaker : 1,
-		choices : undefined,
-		mousedOver : false
-	});
-	objList.push(testChar);
-	*/

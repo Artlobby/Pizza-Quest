@@ -1,23 +1,30 @@
 "use strict";
-var app = app || {};
 
-app.input = function(){
-	var input = {};
+const input = function(){
 
 
-
-
-	input.mouse = {};		// The mouse position on the screen
+	mouse = {};		// The mouse position on the screen
 
 
 
 
+	Init = function(canvas){
+		canvas.onmousemove = MouseMove;
+		canvas.onmousedown = MouseClick;
+		window.addEventListener("keyup", 		OnKeyUp);
+		TouchInit(canvas);
+		canvas.addEventListener("touchstart", 	TouchMove);
+		canvas.addEventListener("touchmove", 	TouchMove);
+		canvas.addEventListener("touchend", 	MouseClick);
+	}
 
 
-	input.mouseMove = function(e){
+
+
+	const MouseMove = function(e){
 		// Sets the mouse position
-		input.mouse.x = e.pageX - e.target.offsetLeft;
-		input.mouse.y = e.pageY - e.target.offsetTop;
+		mouse.x = e.pageX - e.target.offsetLeft;
+		mouse.y = e.pageY - e.target.offsetTop;
 	};
 
 
@@ -25,82 +32,66 @@ app.input = function(){
 
 
 
-	input.mouseClick = function(e){
+	const MouseClick = function(e){
 		
 		// CLICKING DURING GAMEPLAY
-		if(this.game.gameState == this.game.GAME_STATE.GAMEPLAY){
+		if(game.gameState == game.GAME_STATE.GAMEPLAY){
 
 			// If the mouse is in the Play Area
-			if(input.mouse.y < this.ui.bottomBound){
+			if(mouse.y < ui.BOTTOM_BOUND){
 
 				// If the current action is not LOOK AT or TALK TO
 				// (which don't require the player to move over to the target to perform)
 				// The player moves over to where the mouse clicked
-				if(this.player.currentAction != this.PLAYER_ACTION.LOOK_AT &&
-					this.player.currentAction != this.PLAYER_ACTION.TALK_TO &&
-					this.player.currentAction != this.PLAYER_ACTION.GIVE){
+				if(player.currentAction != player.ACTIONS.LOOK_AT &&
+					player.currentAction != player.ACTIONS.TALK_TO &&
+					player.currentAction != player.ACTIONS.GIVE){
 
-					this.player.destination.x = input.mouse.x;
-					this.player.destination.y = input.mouse.y;
+					player.destination.x = mouse.x;
+					player.destination.y = mouse.y;
 
 					// Keeps player in boundaries
-					var scene = this.scene.scenes[this.scene.currentScene];
-					if(this.player.destination.x < scene.xMin)
-						this.player.destination.x = scene.xMin;
-					if(this.player.destination.x > scene.xMax)
-						this.player.destination.x = scene.xMax;
-					if(this.player.destination.y < scene.yMin)
-						this.player.destination.y = scene.yMin;
-					if(this.player.destination.y > scene.yMax)
-						this.player.destination.y = scene.yMax;
+					let scene = scene.scenes[scene.currentScene];
+					if(player.destination.x < scene.xMin)
+						player.destination.x = scene.xMin;
+					if(player.destination.x > scene.xMax)
+						player.destination.x = scene.xMax;
+					if(player.destination.y < scene.yMin)
+						player.destination.y = scene.yMin;
+					if(player.destination.y > scene.yMax)
+						player.destination.y = scene.yMax;
 				}
 		
 				// If no objects were clicked on,
 				// Whatever the current action is is cancelled and removed from the focus text
 				// If the player happened to be moving somewhereto perform an action,
 				// that is cancelled as well.
-				if(this.objects.clickObjects(this.dialogue, this.player) == false){
-					this.player.currentAction = this.PLAYER_ACTION.NONE;
-					this.ui.focusText = "";
-					this.player.useGiveItem = undefined;
-					this.player.currentActionFunction = function(){};
+				if(objects.clickObjects(dialogue, player) == false){
+					player.currentAction = player.ACTIONS.NONE;
+					SetFocusText("");
+					player.useGiveItem = undefined;
+					player.setCurrentActionFunction(function(){});
 				}
 
 			}
 
 			// Checks if the UI was clicked and takes the necessary actions over on the UI side
 			// If no UI elements were clicked, cancels the current action
-			else if(this.ui.checkUIClick(this.player, this.dialogue, this.objects) == false){
-				this.player.currentAction = this.PLAYER_ACTION.NONE;
-				this.ui.focusText = "";
-				this.player.useGiveItem = undefined;
+			else if(ui.CheckUIClick(player, dialogue, objects) == false){
+				player.currentAction = player.ACTIONS.NONE;
+				SetFocusText("");
+				player.useGiveItem = undefined;
 			}
 
 		// CLICKING DURING DIALOGUE
-		} else if(this.game.gameState == this.game.GAME_STATE.DIALOGUE){
-			
-			// If dialogue is being spoken
-			// (meaning there are lines of dialogue in the array for that)
-			// Removes the current line of dialogue when clicked
-			// to move on to the next one
-			if(this.dialogue.lines.length > 0)
-				this.dialogue.lines.splice(0,1);
-
-			// If the player is given a choice of dialogue
+		} else if(game.gameState == game.GAME_STATE.DIALOGUE){
+			if(dialogue.lines.length > 0)
+				dialogue.lines.splice(0,1);
 			else {
-
-				// If the player clicks on the Play Area, outside of the UI
-				// Cancels the talking interaction
-				//if(input.mouse.y < this.ui.bottomBound)
-				//	this.dialogue.discourseOptions = undefined;
-
-				// If the player clicks in the UI,
-				// Checks if they've chosen a line of dialogue and takes appropriate action
-				//else
-					this.dialogue.converseClick();
+				dialogue.converseClick();
 			}
-		} else if (this.game.gameState == this.game.GAME_STATE.MENU){
-			this.startMenu.click(this.ctx, this.player, GetObject(this.objects.list, "Mackenzie"), this.game);
+		} else if (game.gameState == game.GAME_STATE.MENU){
+			startMenu.click(ctx, player, utility.GetObject(objects.list, "Mackenzie"), game);
 		}
 	};
 
@@ -110,51 +101,45 @@ app.input = function(){
 
 
 
-
-
-	input.onKeyUp = function(e){
-
-		var char = String.fromCharCode(e.keyCode);
+	let keyChar
+	const SetAction = function(string, action){
+		player.currentAction = action;
+		SetFocusText(string);
+		player.useGiveItem = undefined;
+	}
+	const OnKeyUp = function(e){
+		keyChar = String.fromCharCode(e.keyCode);
 
 		// Keyboard controls set Actions.
 		// Controls based on Indiana Jones and the Fate of Atlantis
-		// Key Daemon not necessary for this game
-		//	But if it were, it would require simply adding a KeyDown event
-		//	 and an array of key states, like in Boomshine
 
-		var setAction = function(string, action){
-			this.player.currentAction = action;
-			this.ui.focusText = string;
-			this.player.useGiveItem = undefined;
-		}.bind(this);
-
-		switch (char){
+		switch (keyChar){
 			case 'G':
-				setAction("Give", this.PLAYER_ACTION.GIVE);
+				SetAction("Give", player.ACTIONS.GIVE);
 				break;
 			case 'O':
-				setAction("Open", this.PLAYER_ACTION.OPEN);
+				SetAction("Open", player.ACTIONS.OPEN);
 				break;
 			case 'C':
-				setAction("Close", this.PLAYER_ACTION.CLOSE);
+				SetAction("Close", player.ACTIONS.CLOSE);
 				break;
 			case 'P':
-				setAction("Pick Up", this.PLAYER_ACTION.PICK_UP);
+				SetAction("Pick Up", player.ACTIONS.PICK_UP);
 				break;
 			case 'T':
-				setAction("Talk To", this.PLAYER_ACTION.TALK_TO);
+				SetAction("Talk To", player.ACTIONS.TALK_TO);
 				break;
 			case 'L':
-				setAction("Look At", this.PLAYER_ACTION.LOOK_AT);
+				SetAction("Look At", player.ACTIONS.LOOK_AT);
 				break;
 			case 'U':
-				setAction("Use", this.PLAYER_ACTION.USE);
+				SetAction("Use", player.ACTIONS.USE);
 				break;
 			case 'S':
-				setAction("Push", this.PLAYER_ACTION.PUSH);
+				SetAction("Push", player.ACTIONS.PUSH);
 				break;
 			case 'Y':
-				setAction("Pull", this.PLAYER_ACTION.PULL);
+				SetAction("Pull", player.ACTIONS.PULL);
 				break;
 		}
 	};
@@ -176,23 +161,19 @@ app.input = function(){
 	// Releasing a touch acts as a click
 	// When touching the canvas, default behavior such as scrolling is disabled
 
-	input.touchMove = function(e){
-		var touch = e.touches[0];
-		input.mouse.x = touch.clientX - e.target.offsetLeft;;
-		input.mouse.y = touch.clientY - e.target.offsetTop;;
+	const TouchMove = function(e){
+		let touch = e.touches[0];
+		mouse.x = touch.clientX - e.target.offsetLeft;;
+		mouse.y = touch.clientY - e.target.offsetTop;;
 	};
-	input.touchEnd = function(e){
-		input.touchMove(e);
-		input.mouseClick(e);
-	};
-	input.touchInit = function(){
-		this.canvas.addEventListener("touchstart", function (e) {
+	const TouchInit = function(canvas){
+		canvas.addEventListener("touchstart", function (e) {
 			e.preventDefault();
 		});
-		this.canvas.addEventListener("touchend", function (e) {
+		canvas.addEventListener("touchend", function (e) {
 			e.preventDefault();
 		});
-		this.canvas.addEventListener("touchmove", function (e) {
+		canvas.addEventListener("touchmove", function (e) {
 			e.preventDefault();
 		});
 	};
@@ -202,7 +183,11 @@ app.input = function(){
 
 
 
-	return input;
+	return Object.freeze({
+		mouse : mouse,
+
+		Init : Init
+	});
 
 }();
 

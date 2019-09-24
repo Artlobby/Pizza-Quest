@@ -2,13 +2,10 @@
 "use strict";
 
 
+const util = {};
 
-
-function fillText(ctx, string, x, y, css, color, align) {
-
+util.FillText = function(ctx, string, x, y, css, color, align) {
 	// A quicker way to write text on the canvas
-	// (Lovingly) stolen from Boomshine
-
 	ctx.save();
 	if(align == undefined) 
 		ctx.textAlign = "center";
@@ -23,14 +20,12 @@ function fillText(ctx, string, x, y, css, color, align) {
 
 
 
-function checkTextLength(ctx, string, css) {
-
+util.CheckTextLength = function(ctx, string, css) {
 	// Checks the length of
 	// a string of text on screen
-
 	ctx.save();
 	ctx.font = css;
-	var w = ctx.measureText(string).width;
+	let w = ctx.measureText(string).width;
 	ctx.restore();
 	return w;
 }
@@ -38,11 +33,8 @@ function checkTextLength(ctx, string, css) {
 
 
 
-function rectangleContainsPoint(rect, point){
-
+util.RectangleContainsPoint = function(rect, point){
 	// Checks whether a point is within a rectangle
-	// (Lovingly) stolen from Boomshine
-
 	if(rect.width <= 0 || rect.height <= 0) return false;
 	return (point.x >= rect.x && point.x <= rect.x + rect.width &&
 		point.y >= rect.y && point.y <= rect.y + rect.height);
@@ -51,13 +43,13 @@ function rectangleContainsPoint(rect, point){
 
 
 
-function getActionText(ui, player){
-
+let action;
+util.GetActionText = function(ui, player){
 	// Gets the written-out string version of an action
 
-	var action = "";
+	action = "";
 
-	for(var b = 0; b < ui.actionButtons.length; ++b)
+	for(let b = 0; b < ui.actionButtons.length; ++b)
 		if(ui.actionButtons[b].action == player.currentAction){
 			action = ui.actionButtons[b].text + " ";
 			break;
@@ -76,7 +68,7 @@ function getActionText(ui, player){
 
 
 
-function QuickSay(words){
+util.QuickSay = function(words){
 
 	// Quickly makes a function for the player to say something
 	// Used to clean up object initialization
@@ -89,11 +81,11 @@ function QuickSay(words){
 
 
 
-function GetObject(objects, name){
+util.GetObject = function(objects, name){
 
 	// Gets an object from the list, by its name
 
-	for(var n = 0; n < objects.length; ++n){
+	for(let n = 0; n < objects.length; ++n){
 		if(objects[n].name == name){
 			return objects[n];
 		}
@@ -105,9 +97,10 @@ function GetObject(objects, name){
 
 // Gets the change in timre between frames
 // (Lovingly) stolen from Boomshine
-var lastTime = 0;
-function deltaTime(){
-    var now, fps;
+let lastTime = 0;
+let now;
+let fps;
+util.DeltaTime = function(){
     now = performance.now();
     fps = 1000 / (now - lastTime);
     fps = Math.max(12, Math.min(60, fps));

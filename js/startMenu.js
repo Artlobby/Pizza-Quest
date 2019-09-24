@@ -47,10 +47,10 @@ app.startMenu = function(){
 		startMenu.drawGraphic(ctx, alexPortrait.img, 320, 340);
 		startMenu.drawGraphic(ctx, mackenziePortrait.img, 520, 340);
 
-		fillText(ctx, "Select Character:", 120, 258, "16pt monkeyisland1", "white", "center");
-		fillText(ctx, "Alexander", 320, 372, "16pt monkeyisland1", "white", "center");
-		fillText(ctx, "Mackenzie", 520, 372, "16pt monkeyisland1", "white", "center");
-		fillText(ctx, "Alexander Earley's", 200, 30, "16pt monkeyisland1", "white", "center");
+		utility.FillText(ctx, "Select Character:", 120, 258, "16pt monkeyisland1", "white", "center");
+		utility.FillText(ctx, "Alexander", 320, 372, "16pt monkeyisland1", "white", "center");
+		utility.FillText(ctx, "Mackenzie", 520, 372, "16pt monkeyisland1", "white", "center");
+		utility.FillText(ctx, "Alexander Earley's", 200, 30, "16pt monkeyisland1", "white", "center");
 	};
 
 	startMenu.drawGraphic = function(ctx, img, x, y){
@@ -71,7 +71,7 @@ app.startMenu = function(){
 
 	//	console.log(rect);
 
-		if(rectangleContainsPoint(rect, input.mouse)){
+		if(utility.RectangleContainsPoint(rect, input.mouse)){
 			ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
 			img.mousedOver = true;
 		} else {

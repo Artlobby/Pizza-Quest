@@ -1,50 +1,76 @@
 "use strict";
-var app = app || {};
 
-app.player = function(){
+const player = (function(){
 
-	var player = {};
-
-
-
-
-	player.position = { x : 300, y : 230};		// Current on-screen position
-	player.destination = { x : 300, y : 230};	// Position player moves towards (set by clicking on screen)
-	player.speedX = 3.5;						// Movement speed of the player in x direction
-	player.speedY = 1.5;						// Movement speed of the player in y direction
-	player.currentAction = 0;					// Current set action of player
-	player.useGiveItem = undefined;				// The item the player has chosen to use with or give to something else
-	player.inventory = [];						// The held objects of the player
-	player.isWalking = false;					// Whether the player is moving (should change to a player state, for use with animation)
-	player.animations = [];						// Holds the player animations
-	player.currentAnimation = undefined;		// The current player animation
+	const ACTIONS = Object.freeze({
+		NONE 		: 0,
+		LOOK_AT 	: 1,
+		USE 		: 2,
+		PICK_UP 	: 3,
+		PUSH 		: 4,
+		PULL 		: 5,
+		GIVE 		: 6,
+		TALK_TO 	: 7,
+		OPEN 		: 8,
+		CLOSE 		: 9
+	});
 
 
 
 
-	player.addToInventory = function(obj){
+	let position 			= { x : 300, y : 230 };	// Current on-screen position
+	let destination			= { x : 300, y : 230 };	// Position player moves towards (set by clicking on screen)
+	console.log("TODO: Wrap position and destination in getters and setters?");
+	const inventory 		= [];					// The held objects of the player
+	console.log("TODO: Shut away inventory completely");
+	const animations 		= [];					// Holds the player animations
+	console.log("TODO: Maybe shut away animations completely?");
 
-		// Adds an object to the player's inventory
-		// Also a property for whether the object is moused over in the inventory
+	const SPEED_X 			= 3.5;					// Movement speed of the player in x direction
+	const SPEED_Y 			= 1.5;					// Movement speed of the player in y direction
 
-		var item = {};
-		item.object = obj;
-		item.mousedOver = false;
-		player.inventory.push(item);
-		obj.inInventory = true;
+	let _isWalking 			= false;				// Whether the player is moving (should change to a player state, for use with animation)
+	let _currentAnimation 	= undefined;			// The current player animation
+	let _currentAction 		= 0;					// Current set action of player
+	let _useGiveItem 		= undefined;			// The item the player has chosen to use with or give to something else
+
+
+
+	const SetCurrentAction = function(input){
+		_currentAction = input;
+	}
+	const GetCurrentAction = function(){
+		return _currentAction;
+	}
+
+
+
+	const SetUseGiveItem = function(input){
+		_useGiveItem = input;
+	}
+	const GetUseGiveItem = function(){
+		return _useGiveItem;
+	}
+
+
+
+
+	let _addItem;
+	const AddToInventory = function(obj){
+		_addItem 			= {};
+		_addItem.object 	= obj;
+		_addItem.mousedOver = false;
+		inventory.push(_addItem);
+		obj.inInventory 	= true;
 	};
 
 
 	
 
-	player.removeFromInventory = function(objName){
-
-		// Removes an object from the inventory
-		// By finding it by name
-
-		for(var n = 0; n < player.inventory.length; ++n){
-			if(player.inventory[n].object.name == objName){
-				player.inventory.splice(n, 1);
+	const RemoveFromInventory = function(objName){
+		for(let n = 0; n < inventory.length; ++n){
+			if(inventory[n].object.name == objName){
+				inventory.splice(n, 1);
 				break;
 			}
 		}
@@ -53,114 +79,104 @@ app.player = function(){
 
 
 
-	player.update = function(ctx, game, dialogue){
+	const Update = function(ctx, game, dialogue){
 		if(game.gameState == game.GAME_STATE.GAMEPLAY){
-			// If the game is currently in the GAMEPLAY state,
-			// the player will walk
-			player.move();
+			Move();
 		}
+		
+		Animate(dialogue);
 
-		// Animates the player
-		player.animate(dialogue);
-
-		// If the player is not walking, this function will be called
-		// It is usually empty, but when the player initiates an action,
-		// this function will take that action once the player has reached their target
-		if(player.isWalking == false)
-			player.currentActionFunction();
+		if(_isWalking == false)
+			_currentActionFunction();
 	};
 
-	
 
 
-	player.move = function(){
+
+	const Move = function(){
 
 		// If the player has not reached their destination
 		// Moves the player towards the destination
 
-		if(player.position.x != player.destination.x ||
-		player.position.y != player.destination.y){
+		if(position.x != destination.x ||
+		position.y != destination.y){
 
-			player.isWalking = true;
+			_isWalking = true;
 
-			if(Math.abs(player.destination.x - player.position.x) < player.speedX)
-				player.position.x = player.destination.x;
+			if(Math.abs(destination.x - position.x) < SPEED_X)
+				position.x = destination.x;
 			else {
-				if (player.destination.x - player.position.x > 0) 
-					player.position.x += player.speedX;
+				if (destination.x - position.x > 0) 
+					position.x += SPEED_X;
 				else
-					player.position.x -= player.speedX;
+					position.x -= SPEED_X;
 			}
 
-			if(Math.abs(player.destination.y - player.position.y) < player.speedY)
-				player.position.y = player.destination.y;
+			if(Math.abs(destination.y - position.y) < SPEED_Y)
+				position.y = destination.y;
 			else {
-				if (player.destination.y - player.position.y > 0) 
-					player.position.y += player.speedY;
+				if (destination.y - position.y > 0) 
+					position.y += SPEED_Y;
 				else
-					player.position.y -= player.speedY;
+					position.y -= SPEED_Y;
 			}
 
 		} else {
-			player.isWalking = false;
+			_isWalking = false;
 		}
 	};
 
 
 
 
-	player.animate = function(dialogue){
+	let _animX;
+	let _animY;
+	const Animate = function(dialogue){
 
 		// Uses 0, 1, and -1 to determine what direction the player is moving on each axis
-		var x = 0;
-		var y = 0;
-		if(player.destination.x - player.position.x > 0) x = 1;
-		if(player.destination.x - player.position.x < 0) x = -1;
-		if(player.destination.y - player.position.y > 0) y = 1;
-		if(player.destination.y - player.position.y < 0) y = -1;
+		_animX = 0;
+		_animY = 0;
+		if(destination.x - position.x > 0) _animX = 1;
+		if(destination.x - position.x < 0) _animX = -1;
+		if(destination.y - position.y > 0) _animY = 1;
+		if(destination.y - position.y < 0) _animY = -1;
 
 		// Selects a walking animation for the player based on the above direction
-		if(y == 0){
-			if(x > 0) player.currentAnimation =  player.animations[player.animNames.WALK_RIGHT];
-			else player.currentAnimation =  player.animations[player.animNames.WALK_LEFT];
+		if(_animY == 0){
+			if(_animX > 0) _currentAnimation =  animations[ANIM_NAMES.WALK_RIGHT];
+			else _currentAnimation =  animations[ANIM_NAMES.WALK_LEFT];
 		}
-		else if(y > 0) player.currentAnimation =  player.animations[player.animNames.WALK_DOWN];
-		else player.currentAnimation =  player.animations[player.animNames.WALK_UP];
+		else if(_animY > 0) _currentAnimation =  animations[ANIM_NAMES.WALK_DOWN];
+		else _currentAnimation =  animations[ANIM_NAMES.WALK_UP];
 
 		// If the player isn't walking (or dialogue is happening), selects the idle animation
-		if(player.isWalking== false)
-			player.currentAnimation = player.animations[player.animNames.IDLE];
+		if(_isWalking== false)
+			_currentAnimation = animations[ANIM_NAMES.IDLE];
 		if(dialogue.lines.length > 0 || dialogue.discourseOptions != undefined){
-			player.currentAnimation = player.animations[player.animNames.IDLE];
+			_currentAnimation = animations[ANIM_NAMES.IDLE];
 		}
 
 		// If the player is speaking, selects the talking animation
 		if(dialogue.lines.length > 0 &&
 			dialogue.lines[0].character == 0)
-			player.currentAnimation = player.animations[player.animNames.TALK];
+			_currentAnimation = animations[ANIM_NAMES.TALK];
 		
 	};
 
 
 
 
-	player.draw = function(ctx, drawList, DrawListObj){
-
-		// Adds the player's draw function to the draw list
-		// The draw list draws all onscreen objects with consideration to
-		// their z position in space.
-
-		var func = function(){
-			player.currentAnimation.draw(ctx, player.position.x, player.position.y);
-		};
-
-		drawList.push(new DrawListObj(player.position.y, func));
+	const Draw = function(ctx, drawList, DrawListObj){
+		let drawFunc = function(){
+			_currentAnimation.draw(ctx, position.x, position.y);
+		}
+		drawList.push(new DrawListObj(position.y, drawFunc));
 	};
 
 
 
 	// The enumerator for player animations
-	player.animNames = Object.freeze({
+	const ANIM_NAMES = Object.freeze({
 		IDLE 		: 0,
 		WALK_DOWN 	: 1,
 		WALK_UP 	: 2,
@@ -174,11 +190,31 @@ app.player = function(){
 
 	// Takes a function when the player sets an action,
 	// to be run once the player reaches their action's target
-	player.currentActionFunction = function(){};
+	let _currentActionFunction = function(){};
+	const SetCurrentActionFunction = function(input){
+		_currentActionFunction = input;
+	};
 
 
 
 
-	return player;
+	return Object.freeze({
+		ACTIONS						: ACTIONS,
 
-} ();
+		position 					: position,
+		destination 				: destination,
+		inventory 					: inventory,
+		animations 					: animations,
+
+		SetCurrentAction			: SetCurrentAction,
+		GetCurrentAction			: GetCurrentAction,
+		SetUseGiveItem				: SetUseGiveItem,
+		GetUseGiveItem				: GetUseGiveItem,
+		AddToInventory 				: AddToInventory,
+		RemoveFromInventory 		: RemoveFromInventory,
+		Update	 					: Update,
+		Draw 						: Draw,
+		SetCurrentActionFunction	: SetCurrentActionFunction
+	});
+
+})();
